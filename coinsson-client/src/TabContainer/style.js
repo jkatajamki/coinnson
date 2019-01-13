@@ -1,10 +1,11 @@
 import styled from 'styled-components';
 
-export const Tabs = styled.ul`
-  > li {
+export const TabHeaders = styled.ul`
 
-  }
 `;
 
-export const TabPane = styled.div`
-`
+export const TabHeader = styled.button`
+`;
+
+export const TabContent = styled.div`
+`;

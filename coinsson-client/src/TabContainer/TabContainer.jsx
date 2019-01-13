@@ -1,9 +1,19 @@
 import React, { Component } from 'react';
 import tabs from './tabs';
+import { TabHeaders, TabHeader, TabContent } from './style';
 import { AchievementTracks } from '../Achievements/AchievementTracks';
-import { Tabs, TabPane } from './style';
 
 export class TabContainer extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      activeTab: 'Achievements',
+    };
+
+    this.setTab = this.setTab.bind(this)
+  }
+
   renderTab(tabName) {
     switch(tabName) {
       case 'Achievements':
@@ -13,18 +23,22 @@ export class TabContainer extends Component {
     }
   }
 
+  setTab(event) {
+    this.setState({
+      activeTab: event.target.value
+    })
+  }
+
   render() {
     return (<div className="tab-container">
-      <Tabs
-        defaultActiveKey="1"
-        size="large"
-      >
-        {tabs.map((tab) => (
-          <TabPane tab={tab.tab} key={tab.key}>
-            {this.renderTab(tab.tab)}
-          </TabPane>
-        ))}
-      </Tabs>
+      {tabs.map((tab) => (
+        <TabHeaders key={tab.key}>
+          <TabHeader onClick={this.setTab} value={tab.tab}>{tab.tab}</TabHeader>
+        </TabHeaders>
+      ))}
+      <TabContent>
+        {this.renderTab(this.state.activeTab)}
+      </TabContent>
     </div>)
   }
 }
