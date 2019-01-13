@@ -1,15 +1,31 @@
 import React from 'react';
 import { StyledIcon } from './styles';
 
-const Icon = ({item, handleClick, complete, disabled}) => {
-  const state = disabled && item.state !== 'used' ? 'blocked' : item.state;
-  return (
-    <StyledIcon
-      state={state}
-      onClick={() => !disabled && item.state === 'available' && handleClick()}
-      pose={complete ? 'complete' : state}>
-      {item.content}
-    </StyledIcon>)
-}
+export default class Icon extends React.PureComponent {
+  constructor(props) {
+    super(props);
 
-export default Icon;
+    this.onIconClick = this.onIconClick.bind(this);
+  }
+
+  onIconClick() {
+    const { disabled, item, handleClick } = this.props;
+    if (disabled || item.state !== 'available') {
+      return;
+    }
+    handleClick();
+  }
+
+  render() {
+    const { item, complete, disabled } = this.props;
+    const iconState = disabled && item.state !== 'used' ? 'blocked' : item.state;
+    return (
+      <StyledIcon
+        state={iconState}
+        onClick={this.onIconClick}
+        pose={complete ? 'complete' : iconState}>
+        {item.content}
+      </StyledIcon>
+    )
+  }
+}
