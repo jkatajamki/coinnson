@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 import tabs from './tabs';
 import { TabHeaders, TabHeader, TabContent, TabWrapper } from './style';
 import { AchievementTracks } from '../Achievements/AchievementTracks';
+import { QuestList } from '../Quests/QuestList.jsx';
 
 export class TabContainer extends Component {
   constructor() {
     super();
 
     this.state = {
-      activeTab: 'Achievements',
+      activeTab: 'Quests',
     };
 
     this.setTab = this.setTab.bind(this)
@@ -19,7 +20,7 @@ export class TabContainer extends Component {
       case 'Achievements':
         return <AchievementTracks />
       case 'Quests':
-        return <AchievementTracks />
+        return <QuestList />
       default:
         return <div className="placeholder"></div>
     }
@@ -36,7 +37,7 @@ export class TabContainer extends Component {
       <TabWrapper>
         <TabHeaders>
           {tabs.map((tab) => (
-            <TabHeader onClick={this.setTab} value={tab.tab}>{tab.tab}</TabHeader>
+            <TabHeader key={tab.key} onClick={this.setTab} value={tab.tab}>{tab.tab}</TabHeader>
           ))}
         </TabHeaders>
         <TabContent>
