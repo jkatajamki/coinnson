@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
 import tabs from './tabs';
-import { TabHeaders, TabHeader, TabContent, TabWrapper } from './style';
+import { TabHeaders, TabHeader, TabContent, TabWrapper, Underline } from './style';
 import { AchievementTracks } from '../Achievements/AchievementTracks';
 import { QuestList } from '../Quests/QuestList.jsx';
+import posed,  { PoseGroup }  from 'react-pose';
+
 
 export class TabContainer extends Component {
   constructor() {
     super();
 
     this.state = {
-      activeTab: 'Quests',
+      activeTab: 'Achievements',
     };
-
-    this.setTab = this.setTab.bind(this)
   }
 
   renderTab(tabName) {
@@ -26,9 +26,9 @@ export class TabContainer extends Component {
     }
   }
 
-  setTab(event) {
+  setTab(tab) {
     this.setState({
-      activeTab: event.target.value
+      activeTab: tab,
     })
   }
 
@@ -37,7 +37,10 @@ export class TabContainer extends Component {
       <TabWrapper>
         <TabHeaders>
           {tabs.map((tab) => (
-            <TabHeader key={tab.key} onClick={this.setTab} value={tab.tab}>{tab.tab}</TabHeader>
+            <TabHeader active={this.state.activeTab === tab.tab} key={tab.key} onClick={() => this.setTab(tab.tab)} value={tab.tab}>
+              {tab.tab}
+              <Underline pose={this.state.activeTab === tab.tab ? 'enter' : 'exit'} active={this.state.activeTab === tab.tab} />
+            </TabHeader>
           ))}
         </TabHeaders>
         <TabContent>

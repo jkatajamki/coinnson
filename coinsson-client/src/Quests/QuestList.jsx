@@ -4,7 +4,6 @@ import { quests } from './quests';
 
 export class QuestList extends Component {
   render() {
-    console.log('quests', quests)
     return (
       <div>
         <h2>Quests</h2>
