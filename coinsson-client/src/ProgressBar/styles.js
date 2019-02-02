@@ -13,7 +13,7 @@ const Transfer = posed.div({
   blocked: {
     backgroundColor: '#A4A9AD',
     transition: { duration: 1000 },
-  }
+  },
 });
 
 const Icon = posed.div({
@@ -36,14 +36,14 @@ const Icon = posed.div({
     border: '0.25em solid #004356',
     backgroundColor: '#006E90',
     transition: { duration: 1000 },
-  }
+  },
 });
 
 const colorMapping = {
-  'available': '#947EB0',
-  'used': '#006E90',
-  'blocked': '#A4A9AD'
-}
+  available: '#947EB0',
+  used: '#006E90',
+  blocked: '#A4A9AD',
+};
 
 export const StyledIcon = styled(Icon)`
   width: 50px;
@@ -56,7 +56,7 @@ export const StyledIcon = styled(Icon)`
   color: white;
   font-size: 2em;
   padding: 0.25em;
-  background-color:  ${props => colorMapping[props.state] };
+  background-color: ${props => colorMapping[props.state]};
 `;
 
 export const ProgressBarDiv = styled.div`
@@ -65,16 +65,16 @@ export const ProgressBarDiv = styled.div`
   align-items: center;
   margin-left: 1em;
   margin-right: 1em;
-`
+`;
 export const Row = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-`
+`;
 
 export const StyledTransfer = styled(Transfer)`
   height: 5em;
   width: 0.5em;
-  background-color:  ${props => colorMapping[props.state] };
-`
+  background-color: ${props => colorMapping[props.state]};
+`;
