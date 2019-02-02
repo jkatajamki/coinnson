@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import posed from 'react-pose';
 
-
 const Animation = posed.div({
   enter: {
     x: '0%',
@@ -20,7 +19,6 @@ const Animation = posed.div({
     }
   }
 })
-
 
 export const TabHeaders = styled.div`
   display: flex;
