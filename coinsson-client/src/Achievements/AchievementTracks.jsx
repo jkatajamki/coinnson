@@ -9,7 +9,7 @@ export class AchievementTracks extends Component {
     <div className="achievement-tracks">
       <h2>AchievementTracks</h2>
       <Container>
-        {achievements.map(achievement => <ProgressBar content={achievement} disabled={false} />)}
+        {achievements.map((achievement, i) => <ProgressBar key={i} content={achievement} disabled={false} />)}
       </Container>
     </div>)
   }

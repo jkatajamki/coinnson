@@ -3,7 +3,6 @@ import tabs from './tabs';
 import { TabHeaders, TabHeader, TabContent, TabWrapper, Underline } from './style';
 import { AchievementTracks } from '../Achievements/AchievementTracks';
 import { QuestList } from '../Quests/QuestList.jsx';
-import posed,  { PoseGroup }  from 'react-pose';
 
 export class TabContainer extends Component {
   constructor() {
