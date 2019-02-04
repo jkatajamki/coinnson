@@ -2,6 +2,15 @@ import React from 'react';
 import Icon from './Icon';
 import Transfer from './Transfer'
 import { ProgressBarDiv, Row } from './styles';
+import {
+  FaFly,
+  FaPlaneDeparture,
+} from 'react-icons/fa';
+
+const icons = {
+  'Laskuvarjohyppy': <FaFly />,
+  'Matka': <FaPlaneDeparture />
+}
 
 class ProgressBar extends React.Component {
   state = {
@@ -15,22 +24,20 @@ class ProgressBar extends React.Component {
     })
   }
 
-
-
   handleStateChange = (clickedItem) => {
+    //TODO: Post to CMS to change state
     const newContent = this.state.content.map(item => {
       if (item.order === clickedItem.order) {
         return {
           ...item,
-          state: 'used'
+          state: 'USED'
         }
       } else if (item.order === clickedItem.order + 1) {
         return {
           ...item,
-          state: 'available'
+          state: 'AVAILABLE'
         }
       }
-
       return item;
     })
     const complete = clickedItem.order === this.state.content.length;
@@ -38,13 +45,16 @@ class ProgressBar extends React.Component {
   }
 
   render() {
-    const content = this.state.content.map(item => {
+
+    const content = this.state.content.quests.map((item) => {
+      console.log('item', item)
       if (item.order === this.state.content.length) {
         return (
         <Icon
           disabled={this.props.disabled}
           complete={this.state.complete}
           key={item.order}
+          icon={icons[item.track.title]}
           item={item}
           handleClick={() => this.handleStateChange(item)} />
       )}
@@ -53,6 +63,7 @@ class ProgressBar extends React.Component {
           <Icon
             disabled={this.props.disabled}
             complete={this.state.complete}
+            icon={icons[item.track.title]}
             item={item}
             handleClick={() => this.handleStateChange(item)} />
           <Transfer state={item.state} disabled={this.props.disabled} />

@@ -2,37 +2,37 @@ import styled from 'styled-components';
 import posed from 'react-pose';
 
 const Transfer = posed.div({
-  used: {
+  'USED': {
     backgroundColor: '#006E90',
     transition: { duration: 1000 },
   },
-  available: {
+  'AVAILABLE': {
     backgroundColor: '#947EB0',
     transition: { duration: 1000 },
   },
-  blocked: {
+  'BLOCKED': {
     backgroundColor: '#A4A9AD',
     transition: { duration: 1000 },
   },
 });
 
 const Icon = posed.div({
-  used: {
+  'USED': {
     backgroundColor: '#006E90',
     transition: { duration: 1000 },
     border: '0.25em solid rgba(0,0,0,0)',
   },
-  available: {
+  'AVAILABLE': {
     backgroundColor: '#947EB0',
     transition: { duration: 1000 },
     border: '0.25em solid #2C2533',
   },
-  blocked: {
+  'BLOCKED': {
     backgroundColor: '#A4A9AD',
     transition: { duration: 1000 },
     border: '0em solid rgba(0,0,0,0)',
   },
-  complete: {
+  'COMPLETE': {
     border: '0.25em solid #004356',
     backgroundColor: '#006E90',
     transition: { duration: 1000 },
