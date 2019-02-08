@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import tabs from './tabs';
 import { TabHeaders, TabHeader, TabContent, TabWrapper, Underline } from './style';
-import { AchievementTracks } from '../Achievements/AchievementTracks';
+import AchievementTracks from '../Achievements/AchievementTracks';
 import { QuestList } from '../Quests/QuestList.jsx';
 
 export class TabContainer extends Component {

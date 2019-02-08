@@ -5,7 +5,10 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import ApolloClient from 'apollo-boost';
 import { ApolloProvider } from 'react-apollo';
+import dotenv from 'dotenv';
 
+dotenv.config()
+console.log(process.env)
 const GRAPHCMS_API = 'https://api-euwest.graphcms.com/v1/cjrp5tohk66o201el1evjlxko/master';
 
 const client = new ApolloClient({
@@ -14,7 +17,7 @@ const client = new ApolloClient({
     credentials: 'include'
   },
   request: async (operation) => {
-    const token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ2ZXJzaW9uIjoxLCJ0b2tlbklkIjoiNWNkNDMzMTgtNTcwNi00ZmVmLWE0OTctZDQzMGVjODdkMDc3In0.zwM6u98kIpus4wgpkGjPtt1867v9Wtwb4HryNd7uyFU';
+    const token = process.env.REACT_APP_API_KEY;
     operation.setContext({
       headers: {
         authorization: token

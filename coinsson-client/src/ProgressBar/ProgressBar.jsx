@@ -2,13 +2,12 @@ import React from 'react';
 import Quests from './Quests';
 import { ProgressBarDiv } from './styles';
 
-class ProgressBar extends React.Component {
-  render() {
+const ProgressBar = ({track}) => {
     return (
       <ProgressBarDiv>
-        <Quests id={this.props.track}/>
+        <Quests id={track}/>
       </ProgressBarDiv>
-  )}
+  )
 }
 
 export default ProgressBar;
