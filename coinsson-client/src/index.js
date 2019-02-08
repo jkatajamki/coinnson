@@ -8,7 +8,7 @@ import { ApolloProvider } from 'react-apollo';
 import dotenv from 'dotenv';
 
 dotenv.config()
-console.log(process.env)
+
 const GRAPHCMS_API = 'https://api-euwest.graphcms.com/v1/cjrp5tohk66o201el1evjlxko/master';
 
 const client = new ApolloClient({
