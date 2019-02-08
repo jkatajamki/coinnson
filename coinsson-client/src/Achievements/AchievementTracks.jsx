@@ -1,16 +1,11 @@
-import React, { Component } from 'react';
-import ProgressBar from '../ProgressBar/ProgressBar';
-import { achievements } from './achievements';
-import { Container } from './styles';
+import React from 'react';
+import Tracks from './Tracks';
 
-export class AchievementTracks extends Component {
-  render() {
-    return (
-    <div className="achievement-tracks">
-      <h2>AchievementTracks</h2>
-      <Container>
-        {achievements.map((achievement, i) => <ProgressBar key={i} content={achievement} disabled={false} />)}
-      </Container>
-    </div>)
-  }
-}
+const AchievementTracks = () => (
+  <div className="achievement-tracks">
+    <h2>AchievementTracks</h2>
+    <Tracks />
+  </div>
+);
+
+export default AchievementTracks;
