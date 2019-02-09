@@ -3,7 +3,7 @@ import Tracks from './Tracks';
 
 const AchievementTracks = () => (
   <div className="achievement-tracks">
-    <h2>AchievementTracks</h2>
+    <h2>Achievement Tracks</h2>
     <Tracks />
   </div>
 );
