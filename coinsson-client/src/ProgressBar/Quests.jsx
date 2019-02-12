@@ -2,6 +2,7 @@ import React from 'react';
 import Quest from './Quest';
 import { Query, Mutation } from 'react-apollo';
 import { CHANGE_STATUS, GET_QUESTS } from './queries';
+import PlaneLoader from '../Loader/Loader';
 
 const Quests = ({ id, completeTrack }) => (
   <Query
@@ -9,7 +10,7 @@ const Quests = ({ id, completeTrack }) => (
     variables={{id}}
     >
     {({ loading, error, data }) => {
-      if (loading) return '';
+      if (loading) return (<PlaneLoader />);
       if (error) return `Error! ${error.message}`;
       return (
         <Mutation mutation={CHANGE_STATUS} key={id}>
