@@ -1,6 +1,7 @@
 import React from 'react';
 import { CardContainer, CardHeader, CardBody } from './styles';
 import { StyledIcon } from '../ProgressBar/styles';
+import { icons } from '../ProgressBar/icon-mapping';
 
 class QuestList extends React.PureComponent {
   render() {
@@ -9,7 +10,7 @@ class QuestList extends React.PureComponent {
         <CardHeader>
           <h4>{this.props.quest.header}</h4>
           <StyledIcon>
-            {this.props.quest.track}
+            {icons[this.props.quest.track.title]}
           </StyledIcon>
         </CardHeader>
         <CardBody>
