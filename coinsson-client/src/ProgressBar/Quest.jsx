@@ -11,6 +11,7 @@ const Quest = ({ data, changeStatus, completeTrack }) =>  data.quests.map((item)
       disabled={item.state === 'BLOCKED'}
       key={item.order}
       icon={icons[item.track.title]}
+      complete={item.track.done}
       item={item}
       handleClick={() => {
         const currItem = {
@@ -26,6 +27,7 @@ const Quest = ({ data, changeStatus, completeTrack }) =>  data.quests.map((item)
       <Icon
         disabled={item.state === 'BLOCKED'}
         icon={icons[item.track.title]}
+        complete={item.track.done}
         item={item}
         handleClick={() => {
           const currItem = {
