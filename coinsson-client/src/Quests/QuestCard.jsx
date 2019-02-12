@@ -6,14 +6,14 @@ import { icons } from '../ProgressBar/icon-mapping';
 class QuestList extends React.PureComponent {
   render() {
     return (
-      <CardContainer>
-        <CardHeader>
+      <CardContainer done={this.props.quest.done}>
+        <CardHeader done={this.props.quest.done}>
           <h4>{this.props.quest.header}</h4>
           <StyledIcon>
-            {icons[this.props.quest.track.title]}
+            {this.props.quest.done ? icons['Done'] : icons[this.props.quest.track.title]}
           </StyledIcon>
         </CardHeader>
-        <CardBody>
+        <CardBody done={this.props.quest.done}>
           <p>{this.props.quest.instructions}</p>
           <p><b>Pisteet:</b> {this.props.quest.points}</p>
         </CardBody>

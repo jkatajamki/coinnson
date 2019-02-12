@@ -1,10 +1,11 @@
 import gql from 'graphql-tag';
 
 export const CHANGE_STATUS = gql`
-  mutation ChangState($id: ID!, $state: State) {
-    updateQuest(data: { state: $state }, where: { id: $id }) {
+  mutation ChangState($id: ID!, $state: State, $done: Boolean) {
+    updateQuest(data: { state: $state, done: $done }, where: { id: $id }) {
       id
       state
+      done
     }
   }
 `;

@@ -7,6 +7,7 @@ export const GET_QUESTS = gql`
       header
       instructions
       points
+      done
       track {
         id
         title
