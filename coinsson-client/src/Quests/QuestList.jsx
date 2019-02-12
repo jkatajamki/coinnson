@@ -1,8 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import QuestCard from './QuestCard';
 import { Query } from 'react-apollo';
 import Loader from 'react-loader-spinner';
 import { GET_QUESTS } from './queries';
+import { Cards } from './styles';
 
 const Quests = () => (
   <Query
@@ -21,9 +22,11 @@ const Quests = () => (
       return (
         <div>
           <h2>Quests</h2>
-          {data.quests.map(quest => {
-            return (<QuestCard key={quest.id} quest={quest} />)
-          })}
+          <Cards>
+            {data.quests.map(quest => {
+              return (<QuestCard key={quest.id} quest={quest} />)
+            })}
+          </Cards>
         </div>
       )
     }}
