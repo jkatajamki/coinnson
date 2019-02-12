@@ -3,7 +3,7 @@ import ProgressBar from '../ProgressBar/ProgressBar';
 import { Container } from './styles';
 import { Query, Mutation } from 'react-apollo';
 import { GET_TRACKS, COMPLETE_TRACK } from './queries';
-import Loader from 'react-loader-spinner';
+import PlaneLoader from '../Loader/Loader';
 
 const Tracks = () => (
   <Query
