@@ -5,6 +5,7 @@ export const GET_TRACKS = gql`
     tracks {
       id
       title
+      hidden
       quests {
         id
         header

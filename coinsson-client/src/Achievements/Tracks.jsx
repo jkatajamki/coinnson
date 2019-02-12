@@ -16,7 +16,7 @@ const Tracks = () => (
         <Mutation mutation={COMPLETE_TRACK}>
           {completeTrack => (
             <Container>
-              {data.tracks.map((track) =>(
+              {data.tracks.filter(track => !track.hidden).map((track) =>(
                 <ProgressBar
                   key={track.id}
                   track={track.id}
