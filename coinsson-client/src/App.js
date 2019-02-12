@@ -10,7 +10,7 @@ const GlobalStyles = createGlobalStyle`
     @import url('https://fonts.googleapis.com/css?family=Montserrat|Staatliches');
     font-family: 'Montserrat', sans-serif;
   }
-  h1, h2, h3, h4, h5 {
+  h1, h2, h3, h4, h5, button {
     font-family: 'Staatliches', sans-serif;
     letter-spacing: 0.1em;
   }
