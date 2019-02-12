@@ -10,7 +10,7 @@ const tabs = [
   {
     tab: 'Admin',
     key: 3,
-  }
+  },
 ];
 
 export default tabs;

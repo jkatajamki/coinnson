@@ -13,9 +13,8 @@ const styles = {
     border: '0.25em solid #947EB0',
     backgroundColor: '#947EB0',
     padding: '0.5em',
-  }
-}
-
+  },
+};
 
 export const CardContainer = styled.div`
   border: ${props => styles[props.styleName].border};
@@ -38,7 +37,7 @@ export const CardHeader = styled.div`
 
 export const CardBody = styled.div`
   padding: 0.5em;
-  color: ${props => props.styleName === 'done' && '#A4A9AD'}
+  color: ${props => props.styleName === 'done' && '#A4A9AD'};
 `;
 
 export const Cards = styled.div`

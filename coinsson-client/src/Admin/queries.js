@@ -2,13 +2,15 @@ import gql from 'graphql-tag';
 
 export const RESET_QUESTS = gql`
   mutation {
-    first: updateManyQuests(data: {state:BLOCKED, done:false, highlight: false}) {
+    first: updateManyQuests(
+      data: { state: BLOCKED, done: false, highlight: false }
+    ) {
       count
-    },
-    second: updateManyQuests(data: {state:AVAILABLE} where: {order:1}) {
+    }
+    second: updateManyQuests(data: { state: AVAILABLE }, where: { order: 1 }) {
       count
-    },
-    third: updateManyTracks(data: {done: false, hidden: false}) {
+    }
+    third: updateManyTracks(data: { done: false, hidden: false }) {
       count
     }
   }
@@ -38,25 +40,17 @@ export const GET_TRACKS = gql`
 
 export const HIGHLIGHT_QUESTS = gql`
   mutation Highlight($id: ID!) {
-    highlight: updateManyQuests(data: {
-    	highlight: true
-    },
-    where: {
-      track: {
-        id: $id
-      }
-    }) {
+    highlight: updateManyQuests(
+      data: { highlight: true }
+      where: { track: { id: $id } }
+    ) {
       count
     }
-    unHighlight: updateManyQuests(data: {
-    	highlight: false
-    },
-    where: {
-      track: {
-        id_not: $id
-      }
-    }) {
+    unHighlight: updateManyQuests(
+      data: { highlight: false }
+      where: { track: { id_not: $id } }
+    ) {
       count
     }
   }
-`
+`;
