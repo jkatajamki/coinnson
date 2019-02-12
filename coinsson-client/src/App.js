@@ -3,7 +3,7 @@ import { ThemeProvider } from 'styled-components';
 import RootContainer from './Layout/RootContainer';
 import { theme } from './style';
 import { TabContainer } from './TabContainer/TabContainer';
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyles = createGlobalStyle`
   body {
@@ -14,7 +14,7 @@ const GlobalStyles = createGlobalStyle`
     font-family: 'Staatliches', sans-serif;
     letter-spacing: 0.1em;
   }
-`
+`;
 
 class App extends Component {
   render() {
