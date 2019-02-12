@@ -10,9 +10,7 @@ const Tracks = () => (
     query={GET_TRACKS}
     >
     {({ loading, error, data }) => {
-      if (loading) return (
-        <PlaneLoader />
-      );
+      if (loading) return ( <PlaneLoader /> );
       if (error) return `Error! ${error.message}`;
       return (
         <Container>
