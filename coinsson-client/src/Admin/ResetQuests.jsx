@@ -1,14 +1,15 @@
 import React from 'react';
 import { Mutation } from 'react-apollo';
 import { RESET_QUESTS } from './queries';
-import { ResetButton } from './styles';
+import { Button } from './styles';
 
 const ResetQuests = () => {
   return (
     <Mutation mutation={RESET_QUESTS}>
         {(resetQuests, { loading, error }) => (
           <div>
-            <ResetButton onClick={resetQuests}>Reset Quests</ResetButton>
+            <h2>Reset Quests</h2>
+            <Button onClick={resetQuests}>Reset Quests</Button>
             {loading && <p>Loading...</p>}
           </div>
         )}

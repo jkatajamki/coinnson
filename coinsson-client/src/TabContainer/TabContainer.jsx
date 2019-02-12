@@ -10,7 +10,7 @@ export class TabContainer extends Component {
     super();
 
     this.state = {
-      activeTab: 'Achievements',
+      activeTab: 'Admin',
     };
   }
 
