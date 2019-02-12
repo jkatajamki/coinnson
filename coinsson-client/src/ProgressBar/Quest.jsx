@@ -23,12 +23,14 @@ const Quest = ({ data, changeStatus }) =>  data.quests.map((item) => {
         handleClick={() => {
           const currItem = {
             id: item.id,
-            state: 'USED'
+            state: 'USED',
+            done: true
           };
           const nextItem = data.quests.find(quest => quest.order === item.order + 1);
           const nextAvailable = {
             id: nextItem.id,
-            state: 'AVAILABLE'
+            state: 'AVAILABLE',
+            done: false
           }
           changeStatus(currItem);
           changeStatus(nextAvailable);

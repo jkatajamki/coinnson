@@ -17,7 +17,7 @@ const Quests = ({ id }) => (
           <Quest
             data={data}
             changeStatus={(item) => {
-              updateQuest({ variables: { id: item.id, state: item.state } });
+              updateQuest({ variables: { id: item.id, state: item.state, done: item.done } });
             }} />)}
         </Mutation>
       )
