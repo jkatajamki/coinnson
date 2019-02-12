@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import QuestCard from './QuestCard';
-import { quests } from './quests';
 import { Query } from 'react-apollo';
 import { GET_QUESTS } from './queries';
 
