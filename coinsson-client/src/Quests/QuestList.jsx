@@ -15,9 +15,15 @@ const Quests = () => (
       return (
         <div>
           <h2>Quests</h2>
+<<<<<<< HEAD
           <Cards>
             {data.quests.filter(quest => !quest.hidden).map(quest => (<QuestCard key={quest.id} quest={quest} />))}
           </Cards>
+=======
+          {data.quests.filter(quest => !quest.hidden).map(quest => {
+            return (<QuestCard key={quest.id} quest={quest} />)
+          })}
+>>>>>>> Add hidden-flags to tracks and quests, and show them based on that flag
         </div>
       )
     }}

@@ -21,10 +21,14 @@ const Tracks = () => (
           {completeTrack => (
             <Container>
 <<<<<<< HEAD
+<<<<<<< HEAD
               {data.tracks.filter(track => !track.hidden).map((track) =>(
 =======
               {data.tracks.map((track) =>(
 >>>>>>> Add everything needed to complete a track when last item is completed
+=======
+              {data.tracks.filter(track => !track.hidden).map((track) =>(
+>>>>>>> Add hidden-flags to tracks and quests, and show them based on that flag
                 <ProgressBar
                   key={track.id}
                   track={track.id}
