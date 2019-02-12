@@ -3,11 +3,7 @@ import ProgressBar from '../ProgressBar/ProgressBar';
 import { Container } from './styles';
 import { Query, Mutation } from 'react-apollo';
 import { GET_TRACKS, COMPLETE_TRACK } from './queries';
-<<<<<<< HEAD
 import PlaneLoader from '../Loader/Loader';
-=======
-import Loader from 'react-loader-spinner';
->>>>>>> Add everything needed to complete a track when last item is completed
 
 const Tracks = () => (
   <Query
@@ -20,15 +16,7 @@ const Tracks = () => (
         <Mutation mutation={COMPLETE_TRACK}>
           {completeTrack => (
             <Container>
-<<<<<<< HEAD
-<<<<<<< HEAD
               {data.tracks.filter(track => !track.hidden).map((track) =>(
-=======
-              {data.tracks.map((track) =>(
->>>>>>> Add everything needed to complete a track when last item is completed
-=======
-              {data.tracks.filter(track => !track.hidden).map((track) =>(
->>>>>>> Add hidden-flags to tracks and quests, and show them based on that flag
                 <ProgressBar
                   key={track.id}
                   track={track.id}

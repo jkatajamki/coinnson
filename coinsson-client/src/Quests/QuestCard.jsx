@@ -5,17 +5,19 @@ import { icons } from '../ProgressBar/icon-mapping';
 
 class QuestList extends React.PureComponent {
   render() {
+    const { quest } = this.props;
+    const style = quest.done ? 'done' : (quest.highlight ? 'highlighted' : 'available');
     return (
-      <CardContainer done={this.props.quest.done}>
-        <CardHeader done={this.props.quest.done}>
-          <h4>{this.props.quest.header}</h4>
+      <CardContainer styleName={style}>
+        <CardHeader styleName={style}>
+          <h4>{quest.header}</h4>
           <StyledIcon>
-            {this.props.quest.done ? icons['Done'] : icons[this.props.quest.track.title]}
+            {quest.done ? icons['Done'] : icons[quest.track.title]}
           </StyledIcon>
         </CardHeader>
-        <CardBody done={this.props.quest.done}>
-          <p>{this.props.quest.instructions}</p>
-          <p><b>Pisteet:</b> {this.props.quest.points}</p>
+        <CardBody styleName={style}>
+          <p>{quest.instructions}</p>
+          <p><b>Pisteet:</b> {quest.points}</p>
         </CardBody>
       </CardContainer>
     )

@@ -1,8 +1,24 @@
 import styled from 'styled-components';
 
+const styles = {
+  available: {
+    border: '0.25em solid #004356',
+    backgroundColor: '#006e90',
+  },
+  done: {
+    border: '0.25em solid #A4A9AD',
+    backgroundColor: '#A4A9AD',
+  },
+  highlighted: {
+    border: '0.25em solid #947EB0',
+    backgroundColor: '#947EB0',
+    padding: '0.5em',
+  }
+}
+
+
 export const CardContainer = styled.div`
-  border: ${props =>
-    props.done ? '0.25em solid #A4A9AD' : '0.25em solid #004356'};
+  border: ${props => styles[props.styleName].border};
   border-radius: 0.5em;
   width: 20em;
   margin-bottom: 0.25em;
@@ -11,7 +27,7 @@ export const CardContainer = styled.div`
 export const CardHeader = styled.div`
   border-top-left-radius: 0.25em;
   border-top-right-radius: 0.25em;
-  background-color: ${props => (props.done ? '#A4A9AD' : '#006e90')};
+  background-color: ${props => styles[props.styleName].backgroundColor};
   color: #fff;
   padding: 0.5em;
   display: flex;
@@ -22,7 +38,7 @@ export const CardHeader = styled.div`
 
 export const CardBody = styled.div`
   padding: 0.5em;
-  color: ${props => props.done && '#A4A9AD'};
+  color: ${props => props.styleName === 'done' && '#A4A9AD'}
 `;
 
 export const Cards = styled.div`
