@@ -4,8 +4,11 @@ export const RESET_QUESTS = gql`
   mutation {
     first: updateManyQuests(data: {state:BLOCKED, done:false, highlight: false}) {
       count
-    }
+    },
     second: updateManyQuests(data: {state:AVAILABLE} where: {order:1}) {
+      count
+    },
+    third: updateManyTracks(data: {done: false, hidden: false}) {
       count
     }
   }
