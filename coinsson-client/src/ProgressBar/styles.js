@@ -61,20 +61,19 @@ export const StyledIcon = styled(Icon)`
 
 export const ProgressBarDiv = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  margin-left: 1em;
-  margin-right: 1em;
+  margin: 1em;
 `;
 export const Row = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
 `;
 
 export const StyledTransfer = styled(Transfer)`
-  height: 5em;
-  width: 0.5em;
+  height: 0.5em;
+  width: 5em;
   background-color: ${props => colorMapping[props.state]};
 `;
