@@ -29,7 +29,7 @@ export const TabHeader = styled.div`
   padding: 2em;
   font-weight: bold;
   font-family: 'Staatliches', sans-serif;
-  letter-spacing: 0.10em;
+  letter-spacing: 0.1em;
   color: ${props => (props.active ? '#2C2533' : '#A4A9AD')};
   display: flex;
   flex-direction: column;
