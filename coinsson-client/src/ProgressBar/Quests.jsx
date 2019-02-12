@@ -3,7 +3,7 @@ import Quest from './Quest';
 import { Query, Mutation } from 'react-apollo';
 import { CHANGE_STATUS, GET_QUESTS } from './queries';
 
-const Quests = ({ id }) => (
+const Quests = ({ id, completeTrack }) => (
   <Query
     query={GET_QUESTS}
     variables={{id}}
@@ -16,6 +16,7 @@ const Quests = ({ id }) => (
             {updateQuest => (
           <Quest
             data={data}
+            completeTrack={completeTrack}
             changeStatus={(item) => {
               updateQuest({ variables: { id: item.id, state: item.state, done: item.done } });
             }} />)}

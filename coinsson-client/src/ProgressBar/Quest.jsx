@@ -4,7 +4,7 @@ import Transfer from './Transfer'
 import { Row } from './styles';
 import { icons } from './icon-mapping';
 
-const Quest = ({ data, changeStatus }) =>  data.quests.map((item) => {
+const Quest = ({ data, changeStatus, completeTrack }) =>  data.quests.map((item) => {
   if (item.order === data.quests.length) {
     return (
     <Icon
@@ -12,7 +12,14 @@ const Quest = ({ data, changeStatus }) =>  data.quests.map((item) => {
       key={item.order}
       icon={icons[item.track.title]}
       item={item}
-      handleClick={() => changeStatus(item)} />
+      handleClick={() => {
+        const currItem = {
+          id: item.id,
+          state: 'USED'
+        }
+        completeTrack();
+        changeStatus(currItem)}
+      } />
   )}
   return (
     <Row key={item.order}>
