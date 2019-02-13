@@ -3,11 +3,11 @@ import posed from 'react-pose';
 
 const Transfer = posed.div({
   USED: {
-    backgroundColor: '#006E90',
+    backgroundColor: '#004356',
     transition: { duration: 1000 },
   },
   AVAILABLE: {
-    backgroundColor: '#947EB0',
+    backgroundColor: '#006E90',
     transition: { duration: 1000 },
   },
   BLOCKED: {
@@ -18,12 +18,12 @@ const Transfer = posed.div({
 
 const Icon = posed.div({
   USED: {
-    backgroundColor: '#006E90',
+    backgroundColor: '#004356',
     transition: { duration: 1000 },
     border: '0.25em solid rgba(0,0,0,0)',
   },
   AVAILABLE: {
-    backgroundColor: '#947EB0',
+    backgroundColor: '#006E90',
     transition: { duration: 1000 },
     border: '0.25em solid #2C2533',
   },
@@ -33,8 +33,8 @@ const Icon = posed.div({
     border: '0em solid rgba(0,0,0,0)',
   },
   COMPLETE: {
-    border: '0.25em solid #004356',
-    backgroundColor: '#006E90',
+    border: '0.25em solid #006E90',
+    backgroundColor: '#004356',
     transition: { duration: 1000 },
   },
 });
