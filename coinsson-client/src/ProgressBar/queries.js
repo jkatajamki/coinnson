@@ -19,6 +19,7 @@ export const GET_QUESTS = gql`
       points
       order
       state
+      hidden
       track {
         id
         title
