@@ -22,6 +22,7 @@ export const GET_QUESTS = gql`
       track {
         id
         title
+        done
       }
     }
   }
