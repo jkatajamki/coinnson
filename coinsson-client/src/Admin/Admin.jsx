@@ -1,12 +1,15 @@
 import React from 'react';
-import { AdminContainer } from './styles';
+import { AdminContainer, ResetContainer } from './styles';
 import ResetQuests from './ResetQuests';
 import TrackRowContainer from './TrackRowContainer';
 
 const Admin = () => {
   return (
     <AdminContainer>
-      <ResetQuests />
+      <h2>Reset</h2>
+      <ResetContainer>
+        <ResetQuests />
+      </ResetContainer>
       <TrackRowContainer />
     </AdminContainer>
   )

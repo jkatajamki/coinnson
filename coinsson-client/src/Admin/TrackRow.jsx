@@ -15,8 +15,8 @@ export default class TrackRow extends React.Component {
       <RowWrapper justifyContent="space-between">
         <p>{track.title}</p>
         <ButtonWrapper>
-          <Button width="7em" onClick={() => this.handleClick(track.id, 'highlight')}>Korosta</Button>
-          <Button width="7em" onClick={() => this.handleClick(track.id, track.hidden ? 'show' : 'hide')}>{track.hidden ? 'Näytä' : 'Piilota'}</Button>
+          <Button onClick={() => this.handleClick(track.id, 'highlight')}>Korosta</Button>
+          <Button onClick={() => this.handleClick(track.id, track.hidden ? 'show' : 'hide')}>{track.hidden ? 'Näytä' : 'Piilota'}</Button>
         </ButtonWrapper>
       </RowWrapper>
     )
