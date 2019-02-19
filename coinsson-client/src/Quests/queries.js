@@ -8,6 +8,7 @@ export const GET_QUESTS = gql`
       instructions
       points
       done
+      hidden
       highlight
       track {
         id
