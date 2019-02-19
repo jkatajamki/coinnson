@@ -52,3 +52,11 @@ export const TabWrapper = styled.div`
   justify-content: center;
   align-items: center;
 `;
+
+export const PointsContainer = styled.div`
+  color: #006e90;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`
