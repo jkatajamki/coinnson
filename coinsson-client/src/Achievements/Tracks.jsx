@@ -8,6 +8,7 @@ import PlaneLoader from '../Loader/Loader';
 const Tracks = () => (
   <Query
     query={GET_TRACKS}
+    pollInterval={500}
     >
     {({ loading, error, data }) => {
       if (loading) return ( <PlaneLoader /> );
