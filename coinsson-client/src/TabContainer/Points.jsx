@@ -2,13 +2,7 @@ import React from 'react';
 import { Query } from 'react-apollo';
 import { GET_POINTS } from './queries';
 import { PointsContainer } from './styles';
-
-const getCount = (data) => {
-  return data.points.reduce((acc, curr) => {
-    const newAcc = acc + curr.points;
-    return newAcc;
-  }, 0);
-}
+import { getPointCount } from '../helpers';
 
 const Points = () => (
   <Query
@@ -20,7 +14,7 @@ const Points = () => (
       if (error) return `Error! ${error.message}`;
       return (
         <PointsContainer>
-          <h2>{getCount(data)}</h2>
+          <h2>{getPointCount(data.points)}</h2>
         </PointsContainer>
       )
     }}
