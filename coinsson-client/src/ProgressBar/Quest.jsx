@@ -16,7 +16,8 @@ const Quest = ({ data, changeStatus, completeTrack }) =>  data.quests.map((item)
       handleClick={() => {
         const currItem = {
           id: item.id,
-          state: 'USED'
+          state: 'USED',
+          points: item.points
         }
         completeTrack();
         changeStatus(currItem)}
@@ -33,7 +34,8 @@ const Quest = ({ data, changeStatus, completeTrack }) =>  data.quests.map((item)
           const currItem = {
             id: item.id,
             state: 'USED',
-            done: true
+            done: true,
+            points: item.points
           };
           const nextItem = data.quests.find(quest => quest.order === item.order + 1);
           const nextAvailable = {

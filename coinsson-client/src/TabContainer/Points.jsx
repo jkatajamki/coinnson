@@ -16,7 +16,7 @@ const Points = () => (
     pollInterval={500}
     >
     {({ loading, error, data }) => {
-      if (loading) return 'Loading...';
+      if (loading) return null;
       if (error) return `Error! ${error.message}`;
       return (
         <PointsContainer>
