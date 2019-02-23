@@ -14,7 +14,7 @@ const Admin = () => {
       </ResetContainer>
       <TrackRowContainer />
     </AdminContainer>
-  )
-}
+  );
+};
 
 export default Admin;

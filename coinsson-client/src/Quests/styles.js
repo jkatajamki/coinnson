@@ -4,22 +4,17 @@ const styles = {
   available: {
     border: '0.25em solid #004356',
     backgroundColor: '#006e90',
-  }
-  ,
+  },
   done: {
     border: '0.25em solid #A4A9AD',
     backgroundColor: '#A4A9AD',
-  }
-  ,
+  },
   highlighted: {
     border: '0.25em solid #004356',
     backgroundColor: '#947EB0',
     padding: '0.5em',
-  }
-  ,
+  },
 };
-
-
 
 const changeColor = keyframes`
   0% {
@@ -35,7 +30,6 @@ const changeColor = keyframes`
     background-color: #004356;
   }
 `;
-
 
 export const CardContainer = styled.div`
   border: ${props => styles[props.styleName].border};
@@ -54,7 +48,12 @@ export const CardHeader = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  animation: ${props => props.styleName === 'highlighted' ? css`${changeColor} 10s linear infinite` : 'none'};
+  animation: ${props =>
+    props.styleName === 'highlighted'
+      ? css`
+          ${changeColor} 10s linear infinite
+        `
+      : 'none'};
 `;
 
 export const CardBody = styled.div`

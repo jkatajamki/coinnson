@@ -6,9 +6,16 @@ import { icons } from '../ProgressBar/icon-mapping';
 class QuestList extends React.Component {
   render() {
     const { quest } = this.props;
-    const style = quest.done ? 'done' : (quest.highlight ? 'highlighted' : 'available');
+    const style = quest.done
+      ? 'done'
+      : quest.highlight
+      ? 'highlighted'
+      : 'available';
     return (
-      <CardContainer styleName={style} pose={quest.highlight ? 'highlight' : 'normal'}>
+      <CardContainer
+        styleName={style}
+        pose={quest.highlight ? 'highlight' : 'normal'}
+      >
         <CardHeader styleName={style}>
           <h4>{quest.header}</h4>
           <StyledIcon>
@@ -17,10 +24,12 @@ class QuestList extends React.Component {
         </CardHeader>
         <CardBody styleName={style}>
           <p>{quest.instructions}</p>
-          <p><b>Pisteet:</b> {quest.points}</p>
+          <p>
+            <b>Pisteet:</b> {quest.points}
+          </p>
         </CardBody>
       </CardContainer>
-    )
+    );
   }
 }
 

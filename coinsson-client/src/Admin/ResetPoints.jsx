@@ -8,23 +8,35 @@ import { getPointCount } from '../helpers';
 
 const ResetPoints = () => {
   return (
-    <Query
-      query={GET_POINTS}>
+    <Query query={GET_POINTS}>
       {({ loading, error, data, refetch }) => {
-        if (loading) return (<PlaneLoader />);
+        if (loading) return <PlaneLoader />;
         if (error) return `Error! ${error.message}`;
         return (
           <Mutation mutation={RESET_POINTS}>
-              {(resetPoints, { loading, error }) => (
-                <div>
-                  {loading ? <PlaneLoader /> : <Button width="10em" onClick={() => resetPoints({ variables: { points: -(getPointCount(data.points)) } })}>Reset Points</Button>}
-                </div>
-              )}
+            {(resetPoints, { loading, error }) => (
+              <div>
+                {loading ? (
+                  <PlaneLoader />
+                ) : (
+                  <Button
+                    width="10em"
+                    onClick={() =>
+                      resetPoints({
+                        variables: { points: -getPointCount(data.points) },
+                      })
+                    }
+                  >
+                    Reset Points
+                  </Button>
+                )}
+              </div>
+            )}
           </Mutation>
-        )
+        );
       }}
     </Query>
-  )
-}
+  );
+};
 
 export default ResetPoints;

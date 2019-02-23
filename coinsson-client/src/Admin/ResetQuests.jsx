@@ -7,13 +7,19 @@ import PlaneLoader from '../Loader/Loader';
 const ResetQuests = () => {
   return (
     <Mutation mutation={RESET_QUESTS}>
-        {(resetQuests, { loading, error }) => (
-          <div>
-            {loading ? <PlaneLoader /> : <Button width="10em" onClick={resetQuests}>Reset Quests</Button>}
-          </div>
-        )}
+      {(resetQuests, { loading, error }) => (
+        <div>
+          {loading ? (
+            <PlaneLoader />
+          ) : (
+            <Button width="10em" onClick={resetQuests}>
+              Reset Quests
+            </Button>
+          )}
+        </div>
+      )}
     </Mutation>
-  )
-}
+  );
+};
 
 export default ResetQuests;

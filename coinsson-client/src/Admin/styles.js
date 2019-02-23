@@ -51,4 +51,4 @@ export const ResetContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-`
+`;
