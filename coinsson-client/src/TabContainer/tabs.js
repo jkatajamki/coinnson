@@ -7,6 +7,10 @@ const tabs = [
     tab: 'Quests',
     key: 2,
   },
+  {
+    tab: 'Admin',
+    key: 3,
+  },
 ];
 
 export default tabs;

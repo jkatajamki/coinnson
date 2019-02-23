@@ -16,7 +16,9 @@ const Quests = () => (
         <div>
           <h2>Quests</h2>
           <Cards>
-            {data.quests.filter(quest => !quest.hidden).map(quest => (<QuestCard key={quest.id} quest={quest} />))}
+            {data.quests.filter(quest => !quest.hidden).map(quest => {
+              return (<QuestCard key={quest.id} quest={quest} />)
+            })}
           </Cards>
         </div>
       )

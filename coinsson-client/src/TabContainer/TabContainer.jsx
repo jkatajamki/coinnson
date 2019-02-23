@@ -3,13 +3,14 @@ import tabs from './tabs';
 import { TabHeaders, TabHeader, TabContent, TabWrapper, Underline } from './style';
 import AchievementTracks from '../Achievements/AchievementTracks';
 import QuestList from '../Quests/QuestList.jsx';
+import Admin from '../Admin/Admin';
 
 export class TabContainer extends Component {
   constructor() {
     super();
 
     this.state = {
-      activeTab: 'Achievements',
+      activeTab: 'Admin',
     };
   }
 
@@ -19,6 +20,8 @@ export class TabContainer extends Component {
         return <AchievementTracks />
       case 'Quests':
         return <QuestList />
+      case 'Admin':
+        return <Admin />
       default:
         return <div className="placeholder"></div>
     }
