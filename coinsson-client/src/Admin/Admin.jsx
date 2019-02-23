@@ -4,11 +4,11 @@ import ResetQuests from './ResetQuests';
 import TrackRowContainer from './TrackRowContainer';
 
 const Admin = () => {
-    return (
-      <AdminContainer>
-        <ResetQuests />
-        <TrackRowContainer />
-      </AdminContainer>
+  return (
+    <AdminContainer>
+      <ResetQuests />
+      <TrackRowContainer />
+    </AdminContainer>
   )
 }
 
