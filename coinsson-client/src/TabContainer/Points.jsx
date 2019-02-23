@@ -5,10 +5,7 @@ import { PointsContainer } from './styles';
 import { getPointCount } from '../helpers';
 
 const Points = () => (
-  <Query
-    query={GET_POINTS}
-    pollInterval={500}
-    >
+  <Query query={GET_POINTS}>
     {({ loading, error, data }) => {
       if (loading) return null;
       if (error) return `Error! ${error.message}`;
@@ -16,9 +13,9 @@ const Points = () => (
         <PointsContainer>
           <h2>{getPointCount(data.points)}</h2>
         </PointsContainer>
-      )
+      );
     }}
   </Query>
-)
+);
 
 export default Points;

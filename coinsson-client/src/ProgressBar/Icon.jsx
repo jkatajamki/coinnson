@@ -18,14 +18,16 @@ export default class Icon extends React.PureComponent {
 
   render() {
     const { item, complete, disabled, icon } = this.props;
-    const iconState = disabled && item.state !== 'USED' ? 'BLOCKED' : item.state;
+    const iconState =
+      disabled && item.state !== 'USED' ? 'BLOCKED' : item.state;
     return (
       <StyledIcon
         state={iconState}
         onClick={this.onIconClick}
-        pose={complete ? 'COMPLETE' : iconState}>
+        pose={complete ? 'COMPLETE' : iconState}
+      >
         {icon}
       </StyledIcon>
-    )
+    );
   }
 }

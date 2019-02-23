@@ -1,11 +1,9 @@
 import React from 'react';
-import { StyledTransfer } from './styles'
+import { StyledTransfer } from './styles';
 
-const Transfer = ({state, disabled}) => {
+const Transfer = ({ state, disabled }) => {
   const checkedState = disabled && state !== 'used' ? 'blocked' : state;
-  return (
-    <StyledTransfer state={checkedState} pose={checkedState} />
-  )
-}
+  return <StyledTransfer state={checkedState} pose={checkedState} />;
+};
 
 export default Transfer;
