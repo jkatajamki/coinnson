@@ -9,7 +9,7 @@ export const Button = styled.button`
   font-size: 1em;
   margin: 0.5em;
   background-color: #fff;
-  width: ${props => (props.width ? props.width : '100%')};
+  width: ${props => (props.width ? props.width : '7em')};
 
   :active {
     background-color: #004356;
@@ -46,3 +46,9 @@ export const TrackRowWrapper = styled.div`
   flex-direction: column;
   min-width: 30em;
 `;
+
+export const ResetContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+`

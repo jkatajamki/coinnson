@@ -82,3 +82,11 @@ export const SHOW_QUESTS = gql`
     }
   }
 `;
+
+export const RESET_POINTS = gql`
+  mutation ResetPoints($points: Int) {
+    resetPoints: createPoint(data: { points: $points }) {
+      points
+    }
+  }
+`

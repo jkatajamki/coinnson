@@ -9,9 +9,7 @@ const ResetQuests = () => {
     <Mutation mutation={RESET_QUESTS}>
         {(resetQuests, { loading, error }) => (
           <div>
-            <h2>Reset Quests</h2>
-
-            {loading ? <PlaneLoader /> : <Button onClick={resetQuests}>Reset Quests</Button>}
+            {loading ? <PlaneLoader /> : <Button width="10em" onClick={resetQuests}>Reset Quests</Button>}
           </div>
         )}
     </Mutation>
