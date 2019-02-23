@@ -5,7 +5,6 @@ import { GET_TRACKS, HIDE_QUESTS, SHOW_QUESTS, HIGHLIGHT_QUESTS  } from './queri
 import TrackRow from './TrackRow';
 import PlaneLoader from '../Loader/Loader';
 
-<<<<<<< HEAD
 const queries = {
   'highlight': HIGHLIGHT_QUESTS,
   'hide': HIDE_QUESTS,
@@ -15,16 +14,6 @@ const queries = {
 export default class TrackRowContainer extends React.PureComponent {
   state = {
     type: 'highlight',
-=======
-export default class TrackRowContainer extends React.PureComponent {
-  state = {
-    type: 'highlight',
-    queries: {
-      'highlight': HIGHLIGHT_QUESTS,
-      'hide': HIDE_QUESTS,
-      'show': SHOW_QUESTS
-    }
->>>>>>> Tracks have some admin-features now, and UI is simpler.
   }
 
   handleTypeChange = (action) => {
@@ -40,11 +29,7 @@ export default class TrackRowContainer extends React.PureComponent {
           if (loading) return (<PlaneLoader />);
           if (error) return `Error! ${error.message}`;
           return (
-<<<<<<< HEAD
             <Mutation mutation={queries[this.state.type]}>
-=======
-            <Mutation mutation={this.state.queries[this.state.type]}>
->>>>>>> Tracks have some admin-features now, and UI is simpler.
                 {handleMutation => (
                 <div>
                   <h2>Do great things with tracks</h2>
