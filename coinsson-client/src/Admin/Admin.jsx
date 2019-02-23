@@ -10,6 +10,7 @@ const Admin = () => {
       <h2>Reset</h2>
       <ResetContainer>
         <ResetQuests />
+        <ResetPoints />
       </ResetContainer>
       <TrackRowContainer />
     </AdminContainer>
