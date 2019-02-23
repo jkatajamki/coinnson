@@ -5,14 +5,15 @@ import { GET_TRACKS, HIDE_QUESTS, SHOW_QUESTS, HIGHLIGHT_QUESTS  } from './queri
 import TrackRow from './TrackRow';
 import PlaneLoader from '../Loader/Loader';
 
+const queries = {
+  'highlight': HIGHLIGHT_QUESTS,
+  'hide': HIDE_QUESTS,
+  'show': SHOW_QUESTS
+}
+
 export default class TrackRowContainer extends React.PureComponent {
   state = {
     type: 'highlight',
-    queries: {
-      'highlight': HIGHLIGHT_QUESTS,
-      'hide': HIDE_QUESTS,
-      'show': SHOW_QUESTS
-    }
   }
 
   handleTypeChange = (action) => {
@@ -28,7 +29,7 @@ export default class TrackRowContainer extends React.PureComponent {
           if (loading) return (<PlaneLoader />);
           if (error) return `Error! ${error.message}`;
           return (
-            <Mutation mutation={this.state.queries[this.state.type]}>
+            <Mutation mutation={queries[this.state.type]}>
                 {handleMutation => (
                 <div>
                   <h2>Do great things with tracks</h2>
