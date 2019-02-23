@@ -7,7 +7,6 @@ import { getPointCount } from '../helpers';
 const Points = () => (
   <Query
     query={GET_POINTS}
-    pollInterval={500}
     >
     {({ loading, error, data }) => {
       if (loading) return null;

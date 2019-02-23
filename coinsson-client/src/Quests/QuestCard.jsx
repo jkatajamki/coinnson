@@ -3,12 +3,12 @@ import { CardContainer, CardHeader, CardBody } from './styles';
 import { StyledIcon } from '../ProgressBar/styles';
 import { icons } from '../ProgressBar/icon-mapping';
 
-class QuestList extends React.PureComponent {
+class QuestList extends React.Component {
   render() {
     const { quest } = this.props;
     const style = quest.done ? 'done' : (quest.highlight ? 'highlighted' : 'available');
     return (
-      <CardContainer styleName={style}>
+      <CardContainer styleName={style} pose={quest.highlight ? 'highlight' : 'normal'}>
         <CardHeader styleName={style}>
           <h4>{quest.header}</h4>
           <StyledIcon>
