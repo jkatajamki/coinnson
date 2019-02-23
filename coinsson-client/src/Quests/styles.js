@@ -63,6 +63,7 @@ export const CardBody = styled.div`
 
 export const Cards = styled.div`
   display: grid;
+
   @media (min-width: 768px) {
     grid-template-columns: 50% 50%;
     grid-column-gap: 0.25em;
