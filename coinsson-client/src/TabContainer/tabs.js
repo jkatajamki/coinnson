@@ -1,10 +1,10 @@
 const tabs = [
   {
-    tab: 'Achievements',
+    tab: 'Saavutukset',
     key: 1,
   },
   {
-    tab: 'Quests',
+    tab: 'Tehtävät',
     key: 2,
   },
   {

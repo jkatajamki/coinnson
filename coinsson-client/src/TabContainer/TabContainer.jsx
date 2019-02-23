@@ -4,6 +4,7 @@ import { TabHeaders, TabHeader, TabContent, TabWrapper, Underline } from './styl
 import AchievementTracks from '../Achievements/AchievementTracks';
 import QuestList from '../Quests/QuestList.jsx';
 import Admin from '../Admin/Admin';
+import Points from './Points';
 
 export class TabContainer extends Component {
   constructor() {
@@ -16,9 +17,9 @@ export class TabContainer extends Component {
 
   renderTab(tabName) {
     switch(tabName) {
-      case 'Achievements':
+      case 'Saavutukset':
         return <AchievementTracks />
-      case 'Quests':
+      case 'Tehtävät':
         return <QuestList />
       case 'Admin':
         return <Admin />
@@ -43,6 +44,7 @@ export class TabContainer extends Component {
               <Underline pose={this.state.activeTab === tab.tab ? 'enter' : 'exit'} active={this.state.activeTab === tab.tab} />
             </TabHeader>
           ))}
+          <Points />
         </TabHeaders>
         <TabContent>
           {this.renderTab(this.state.activeTab)}

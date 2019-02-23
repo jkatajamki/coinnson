@@ -19,7 +19,7 @@ const Quests = ({ id, completeTrack }) => (
             data={data}
             completeTrack={completeTrack}
             changeStatus={(item) => {
-              updateQuest({ variables: { id: item.id, state: item.state, done: item.done } });
+              updateQuest({ variables: { id: item.id, state: item.state, done: item.done, points: item.points } });
             }} />)}
         </Mutation>
       )
