@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { ThemeProvider } from 'styled-components';
 import RootContainer from './Layout/RootContainer';
-import { theme } from './style';
+import { theme } from './styles';
 import { TabContainer } from './TabContainer/TabContainer';
 import { createGlobalStyle } from 'styled-components';
 

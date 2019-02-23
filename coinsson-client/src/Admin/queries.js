@@ -3,7 +3,7 @@ import gql from 'graphql-tag';
 export const RESET_QUESTS = gql`
   mutation {
     first: updateManyQuests(
-      data: { state: BLOCKED, done: false, highlight: false }
+      data: { state: BLOCKED, done: false, highlight: false, hidden: false }
     ) {
       count
     }
@@ -50,6 +50,34 @@ export const HIGHLIGHT_QUESTS = gql`
       data: { highlight: false }
       where: { track: { id_not: $id } }
     ) {
+      count
+    }
+  }
+`;
+
+export const HIDE_QUESTS = gql`
+  mutation Hide($id: ID!) {
+    hideQuests: updateManyQuests(
+      data: { hidden: true }
+      where: { track: { id: $id } }
+    ) {
+      count
+    }
+    hideTracks: updateManyTracks(data: { hidden: true }, where: { id: $id }) {
+      count
+    }
+  }
+`;
+
+export const SHOW_QUESTS = gql`
+  mutation Show($id: ID!) {
+    hideQuests: updateManyQuests(
+      data: { hidden: false }
+      where: { track: { id: $id } }
+    ) {
+      count
+    }
+    hideTracks: updateManyTracks(data: { hidden: false }, where: { id: $id }) {
       count
     }
   }

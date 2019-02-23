@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import tabs from './tabs';
-import { TabHeaders, TabHeader, TabContent, TabWrapper, Underline } from './style';
+import { TabHeaders, TabHeader, TabContent, TabWrapper, Underline } from './styles';
 import AchievementTracks from '../Achievements/AchievementTracks';
 import QuestList from '../Quests/QuestList.jsx';
 import Admin from '../Admin/Admin';

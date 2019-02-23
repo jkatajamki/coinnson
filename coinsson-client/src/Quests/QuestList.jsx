@@ -8,6 +8,7 @@ import { Cards } from './styles';
 const Quests = () => (
   <Query
     query={GET_QUESTS}
+    pollInterval={500}
     >
     {({ loading, error, data }) => {
       if (loading) return ( <PlaneLoader /> );
