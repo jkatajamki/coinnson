@@ -1,4 +1,5 @@
 import styled, { keyframes, css } from 'styled-components';
+import { media } from '../styles';
 
 const styles = {
   available: {
@@ -64,13 +65,11 @@ export const CardBody = styled.div`
 export const Cards = styled.div`
   display: grid;
 
-  @media (min-width: 768px) {
+  grid-template-columns: 100%;
+  grid-column-gap: 0.25em;
+
+  ${media.medium`
     grid-template-columns: 50% 50%;
     grid-column-gap: 0.25em;
-  }
-
-  @media (max-width: 767px) {
-    grid-template-columns: 100%;
-    grid-column-gap: 0.25em;
-  }
+  `};
 `;
