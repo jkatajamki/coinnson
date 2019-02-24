@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { media } from '../styles'
 
 export const AdminContainer = styled.div``;
 
@@ -29,16 +30,15 @@ export const RowWrapper = styled.div`
 export const ButtonWrapper = styled.div`
   display: flex;
 
-  @media (min-width: 768px) {
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+
+  ${media.medium`
     flex-direction: row;
     align-items: center;
     justify-content: space-evenly;
-  }
-  @media (max-width: 767px) {
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-evenly;
-  }
+  `}
 `;
 
 export const TrackRowWrapper = styled.div`
