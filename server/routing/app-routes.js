@@ -1,7 +1,7 @@
-const HelloWorldHandler = require('./handlers/hello-world.handler');
+import { helloWorldHandler } from './handlers/hello-world.handler';
 
-const routes = [
-  { path: '/helloworld', handler: HelloWorldHandler },
+const appRoutes = [
+  { path: '/helloworld', handler: helloWorldHandler },
 ];
 
-module.exports = { routes };
+export default appRoutes;

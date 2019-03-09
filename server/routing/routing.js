@@ -1,10 +1,8 @@
-const Four04Handler = require('./handlers/four04.handler');
-const appRoutes = require('./app-routes');
+import appRoutes from './app-routes';
+import { four04Handler } from './handlers/four04.handler';
 
-const getHandler = (path) => {
-  const foundRoute = appRoutes.routes.find(route => route.path === path);
+export const getHandler = (path) => {
+  const foundRoute = appRoutes.find(route => route.path === path);
 
-  return (foundRoute && foundRoute.handler) ? foundRoute.handler : Four04Handler;
+  return (foundRoute && foundRoute.handler) ? foundRoute.handler : four04Handler;
 };
-
-module.exports = { getHandler };
