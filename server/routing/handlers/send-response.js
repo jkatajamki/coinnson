@@ -8,6 +8,7 @@ export const sendServerError = (res, err) => {
   res.status = 500;
   // TODO:
   // if env is not development, do not send error stack
+  console.error('Error:', err)
   const body = JSON.stringify(err);
   res.end(body);
 }

@@ -5,9 +5,8 @@ import { getHandler } from './routing/routing';
 const port = process.env.PORT || 5000;
 
 http.createServer((req, res) => {
-  const url = parseurl(req);
-
-  const handler = getHandler(url.pathname);
-  handler(url, req, res);
+  const requestUrl = parseurl(req);
+  const handler = getHandler(requestUrl.pathname);
+  handler(requestUrl, req, res);
 })
   .listen(port, () => console.log(`Coinsson server listening on port ${port} ♪♫♫♪`));
