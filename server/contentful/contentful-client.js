@@ -8,6 +8,7 @@ const client = createClient({
   accessToken: CONTENTFUL_API_KEY
 });
 
-const contentfulSpace = client.getSpace(CONTENTFUL_SPACE_ID);
+const contentfulEnvironment = client.getSpace(CONTENTFUL_SPACE_ID)
+  .then((space) => space.getEnvironment('master'))
 
-export default contentfulSpace;
+export default contentfulEnvironment;

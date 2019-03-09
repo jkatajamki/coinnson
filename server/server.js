@@ -7,6 +7,7 @@ const port = process.env.PORT || 5000;
 http.createServer((req, res) => {
   const url = parseurl(req);
 
-  getHandler(url.pathname)(url, req, res);
+  const handler = getHandler(url.pathname);
+  handler(url, req, res);
 })
   .listen(port, () => console.log(`Coinsson server listening on port ${port} ♪♫♫♪`));
