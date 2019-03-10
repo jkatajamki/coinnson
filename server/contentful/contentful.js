@@ -1,33 +1,46 @@
 import contentfulEnv from './contentful-client';
 
-const getContentfulEntries = (contentType) =>
-  contentfulEnv.then((env) =>
-    env.getEntries({
-      'content_type': contentType
-    }));
+const getContentfulEntries = (contentType) => contentfulEnv
+  .then((env) => env.getEntries({
+    'content_type': contentType
+  }))
+  .then(mapFields);
 
-const mapFields = (content) => {
-  const nonEmptyItems = content.items.filter((item) => Object.keys(item.fields).length > 0)
-  return nonEmptyItems.map((item) =>
+const filterOutNonEmptyItems = (items) => items.filter((item) => Object.keys(item.fields).length > 0)
+
+const mapFields = (content) =>
+  filterOutNonEmptyItems(content.items).map((item) =>
     Object.keys(item.fields).reduce((fields, key) => ({
       ...fields,
       [key]: item.fields[key]['en-US']
     }), { id: item.sys.id })
   );
-}
 
-const sumPoints = (pointsContent) => pointsContent.items
-  .map(mapFields)
-  .reduce((total, item) => total + item.points, 0);
+const sumPoints = (items) => items.reduce((total, item) => total + item.points, 0);
 
-export const getPoints = () => getContentfulEntries('points')
-  .then(sumPoints);
+export const getPoints = () => getContentfulEntries('points').then(sumPoints);
 
-export const getAllTracks = () => getContentfulEntries('track')
-  .then(mapFields);
+export const resetPoints = () => contentfulEnv
+  .then((cEnv) => {
+    const negatePoints = (points) => points !== 0 ? -points : 0
 
-export const getAllQuests = () => getContentfulEntries('quest')
-  .then(mapFields);
+    return getPoints()
+      .then((points) => {
+        return cEnv.createEntry('points', {
+          fields: {
+            points: {
+              'en-US': negatePoints(points)
+            }
+          }
+        })
+      .then((draft) => cEnv.getEntry(draft.sys.id))
+      .then((entry) => entry.publish())
+    });
+  });
+
+export const getAllTracks = () => getContentfulEntries('track');
+
+export const getAllQuests = () => getContentfulEntries('quest');
 
 export const getTrackQuests = (trackId) => contentfulEnv
   .then((env) =>
@@ -35,4 +48,4 @@ export const getTrackQuests = (trackId) => contentfulEnv
       'content_type': 'quest',
       'fields.trackTitle.sys.id': trackId,
     }))
-  .then(mapFields)
+  .then(mapFields);
