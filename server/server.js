@@ -1,7 +1,8 @@
 const http = require('http');
 const parseUrl = require('parseurl');
-
+const port = process.env.PORT || 5000;
 const routing = require('./routing/routing');
+
 
 const start = http.createServer((req, res) => {
   const url = parseUrl(req);
@@ -9,6 +10,6 @@ const start = http.createServer((req, res) => {
   routing.getHandler(url.pathname)
     .handle(url, req, res);
 })
-  .listen(8080, () => console.log('coinsson listening on port 8080'));
+  .listen(port, () => console.log(`Coinsson server listening on port ${port}`));
 
 module.exports = start;
