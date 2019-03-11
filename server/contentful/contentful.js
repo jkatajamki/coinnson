@@ -4,11 +4,16 @@ const getContentfulEntries = (contentType) => contentfulEnv
   .then((env) => env.getEntries({
     'content_type': contentType
   }))
+  .then(content => {
+    console.log(JSON.stringify(content, null, 4));
+
+    return content;
+  })
   .then(mapFields);
 
-const filterOutNonEmptyItems = (items) => items.filter((item) => Object.keys(item.fields).length > 0)
+export const filterOutNonEmptyItems = (items) => items.filter((item) => Object.keys(item.fields).length > 0)
 
-const mapFields = (content) =>
+export const mapFields = (content) =>
   filterOutNonEmptyItems(content.items).map((item) =>
     Object.keys(item.fields).reduce((fields, key) => ({
       ...fields,
@@ -16,7 +21,7 @@ const mapFields = (content) =>
     }), { id: item.sys.id })
   );
 
-const sumPoints = (items) => items.reduce((total, item) => total + item.points, 0);
+export const sumPoints = (items) => items.reduce((total, item) => total + item.points, 0);
 
 export const getPoints = () => getContentfulEntries('points').then(sumPoints);
 
