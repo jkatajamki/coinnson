@@ -17,11 +17,14 @@ const sizes = {
 
 const getEmSize = label => sizes[label] / 16;
 
-export const media = Object.keys(sizes).reduce((acc, label) => ({
-  ...acc,
-  [label]: (...args) => css`
-    @media (min-width: ${getEmSize(label)}em) {
-      ${css(...args)};
-    }
-  `
-}), {});
+export const media = Object.keys(sizes).reduce(
+  (acc, label) => ({
+    ...acc,
+    [label]: (...args) => css`
+      @media (min-width: ${getEmSize(label)}em) {
+        ${css(...args)};
+      }
+    `,
+  }),
+  {}
+);
