@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import { points, tracks } from './contentful.mock-data';
-import { mapFields, sumPoints, filterOutNonEmptyItems } from './contentful';
+import { mapFields, sumPoints, filterOutNonEmptyItems, resetPoints } from './contentful';
 
 describe('Parses contentful tauhka correctly', () => {
   describe('Parses points responses correctly', () => {
@@ -13,6 +13,11 @@ describe('Parses contentful tauhka correctly', () => {
     it('Sums mapped points response into a number', () => {
       const sum = sumPoints(mapped);
       expect(sum).to.be.a('number');
+    });
+
+    it('Sums points correctly', () => {
+      const sum = sumPoints(mapped);
+      expect(sum).to.equal(6)
     });
   });
 

@@ -122,7 +122,7 @@ export const points = {
       },
       fields: {
         points: {
-          "en-US": 0
+          "en-US": 6
         }
       }
     },
