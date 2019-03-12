@@ -4,11 +4,6 @@ const getContentfulEntries = (contentType) => contentfulEnv
   .then((env) => env.getEntries({
     'content_type': contentType
   }))
-  .then(content => {
-    console.log(JSON.stringify(content, null, 4));
-
-    return content;
-  })
   .then(mapFields);
 
 export const filterOutNonEmptyItems = (items) => items.filter((item) => Object.keys(item.fields).length > 0)
