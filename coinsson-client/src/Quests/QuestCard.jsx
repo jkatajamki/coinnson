@@ -3,9 +3,9 @@ import { CardContainer, CardHeader, CardBody } from './styles';
 import { StyledIcon } from '../ProgressBar/styles';
 import { icons } from '../ProgressBar/icon-mapping';
 
-class QuestList extends React.Component {
-  render() {
-    const { quest } = this.props;
+
+  const QuestCard = (props) => {
+    const { quest } = props;
     const style = quest.done
       ? 'done'
       : quest.highlight
@@ -31,6 +31,6 @@ class QuestList extends React.Component {
       </CardContainer>
     );
   }
-}
 
-export default QuestList;
+
+export default QuestCard;
