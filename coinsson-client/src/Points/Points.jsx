@@ -1,8 +1,8 @@
 import React from 'react';
 import { Query } from 'react-apollo';
-import { GET_POINTS } from './queries';
-import { PointsContainer } from './styles';
 import { getPointCount } from '../helpers';
+import { GET_POINTS } from '../TabContainer/queries';
+import { PointsContainer } from '../TabContainer/styles';
 
 const Points = () => (
   <Query query={GET_POINTS}>

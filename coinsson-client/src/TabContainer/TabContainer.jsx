@@ -10,7 +10,8 @@ import {
 import AchievementTracks from '../Achievements/AchievementTracks';
 import QuestList from '../Quests/QuestList.jsx';
 import Admin from '../Admin/Admin';
-import Points from './Points';
+import Points from '../Points/Points';
+import { useAjax } from '../use-ajax';
 
 const renderTab = (tabName) => {
   switch (tabName) {
@@ -27,6 +28,8 @@ const renderTab = (tabName) => {
 
 const TabContainer = () => {
   const [ activeTab, setActiveTab ] = useState('Admin');
+  const points = useAjax('/content/getPoints', 'GET')
+  console.log('points', points)
 
   return (
     <TabWrapper>

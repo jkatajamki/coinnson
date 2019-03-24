@@ -30,8 +30,8 @@ const getFetchOptions = (method, data) => ({
   body: method === 'POST' ? JSON.stringify(data) : null,
 });
 
-export default apiCall = (method, path, data = {}) => {
-  const options = getFetchOptions(headers, method, data);
+const apiCall = (method, path, data = {}) => {
+  const options = getFetchOptions(method, data);
   const url = `${API_URL}${path}`;
   return fetch(url, options)
     .then(handleResponse)
@@ -39,5 +39,7 @@ export default apiCall = (method, path, data = {}) => {
       // TODO: handle fetch error
       console.error('Error in apiCall:', e);
       throw e;
-    })
+    });
 };
+
+export default apiCall;
