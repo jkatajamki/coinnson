@@ -7,12 +7,12 @@ import {
 } from './handlers/tracks.handler';
 
 const appRoutes = [
-  { path: '/helloworld', handler: helloWorldHandler },
-  { path: '/content/getPoints', handler: getPointsHandler },
-  { path: '/content/resetPoints', handler: resetPointsHandler },
-  { path: '/content/getAllTracks', handler: getAllTracksHandler },
-  { path: '/content/getAllQuests', handler: getAllQuestsHandler },
-  { path: '/content/getTrackQuests', handler: getTrackQuestsHandler },
+  { path: '/api/helloworld', handler: helloWorldHandler },
+  { path: '/api/content/getPoints', handler: getPointsHandler },
+  { path: '/api/content/resetPoints', handler: resetPointsHandler },
+  { path: '/api/content/getAllTracks', handler: getAllTracksHandler },
+  { path: '/api/content/getAllQuests', handler: getAllQuestsHandler },
+  { path: '/api/content/getTrackQuests', handler: getTrackQuestsHandler },
 ];
 
 export default appRoutes;

@@ -6,11 +6,11 @@ import {
   TabContent,
   TabWrapper,
   Underline,
+  PointsContainer,
 } from './styles';
 import AchievementTracks from '../Achievements/AchievementTracks';
 import QuestList from '../Quests/QuestList.jsx';
 import Admin from '../Admin/Admin';
-import Points from '../Points/Points';
 import { useAjax } from '../use-ajax';
 
 const renderTab = (tabName) => {
@@ -26,10 +26,16 @@ const renderTab = (tabName) => {
   }
 }
 
+
+const getPoints = () => {
+  const response = useAjax('/content/getPoints', 'GET');
+  return response ? response.points : null;
+}
+
 const TabContainer = () => {
   const [ activeTab, setActiveTab ] = useState('Admin');
-  const points = useAjax('/content/getPoints', 'GET')
-  console.log('points', points)
+  const points = getPoints();
+  console.log(points)
 
   return (
     <TabWrapper>
@@ -48,7 +54,9 @@ const TabContainer = () => {
             />
           </TabHeader>
         ))}
-        <Points />
+        <PointsContainer>
+          <h2>{points}</h2>
+        </PointsContainer>
       </TabHeaders>
       <TabContent>{renderTab(activeTab)}</TabContent>
     </TabWrapper>
