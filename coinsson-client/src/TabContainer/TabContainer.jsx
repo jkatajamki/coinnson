@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import tabs from './tabs';
 import {
   TabHeaders,
@@ -11,7 +11,7 @@ import {
 import AchievementTracks from '../Achievements/AchievementTracks';
 import QuestList from '../Quests/QuestList.jsx';
 import Admin from '../Admin/Admin';
-import { useAjax } from '../use-ajax';
+import apiCall from '../Ajax/ajax';
 
 const renderTab = (tabName) => {
   switch (tabName) {
@@ -26,15 +26,18 @@ const renderTab = (tabName) => {
   }
 }
 
-
-const getPoints = () => {
-  const response = useAjax('/content/getPoints', 'GET');
-  return response ? response.points : null;
+const fetchPoints = () => {
+  const path = '/content/getPoints';
+  const method = 'GET';
+  return apiCall(method, path);
 }
 
 const TabContainer = () => {
   const [ activeTab, setActiveTab ] = useState('Admin');
-  const points = getPoints();
+  const [ points, setPoints ] = useState(null);
+  useEffect(() => {
+    fetchPoints().then(res => setPoints(res.points))
+  }, []);
 
   return (
     <TabWrapper>
