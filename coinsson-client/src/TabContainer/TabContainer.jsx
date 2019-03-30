@@ -35,7 +35,6 @@ const getPoints = () => {
 const TabContainer = () => {
   const [ activeTab, setActiveTab ] = useState('Admin');
   const points = getPoints();
-  console.log(points)
 
   return (
     <TabWrapper>
