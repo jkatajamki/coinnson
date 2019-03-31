@@ -4,15 +4,18 @@ import ResetQuests from './ResetQuests';
 import TrackRowContainer from './TrackRowContainer';
 import ResetPoints from './ResetPoints';
 
-const Admin = () => {
+const Admin = ({ tracks }) => {
+  const reset = () => {
+    
+  }
   return (
     <AdminContainer>
       <h2>Reset</h2>
       <ResetContainer>
-        <ResetQuests />
-        <ResetPoints />
+        <ResetQuests resetQuests={reset} />
+        <ResetPoints resetPoints={reset} />
       </ResetContainer>
-      <TrackRowContainer />
+      <TrackRowContainer tracks={tracks} />
     </AdminContainer>
   );
 };
