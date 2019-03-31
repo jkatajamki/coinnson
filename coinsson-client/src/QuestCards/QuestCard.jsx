@@ -19,7 +19,7 @@ import { icons } from '../ProgressBar/icon-mapping';
         <CardHeader styleName={style}>
           <h4>{quest.header}</h4>
           <StyledIcon>
-            {quest.done ? icons['Done'] : icons[quest.track.title]}
+            {quest.done ? icons['Done'] : icons[props.trackTitle]}
           </StyledIcon>
         </CardHeader>
         <CardBody styleName={style}>

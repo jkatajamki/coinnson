@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { ThemeProvider } from 'styled-components';
 import RootContainer from './Layout/RootContainer';
 import { theme } from './styles';
 import TabContainer from './TabContainer/TabContainer';
 import { createGlobalStyle } from 'styled-components';
+import apiCall from './Ajax/ajax';
 
 const GlobalStyles = createGlobalStyle`
   body {
@@ -16,13 +17,35 @@ const GlobalStyles = createGlobalStyle`
   }
 `;
 
-const App = () => (
+const getAllQuests = () => {
+  const path = '/content/getAllQuests';
+  const method= 'GET'
+  return apiCall(method, path)
+}
+
+
+const getAllTracks = () => {
+  const path = '/content/getAllTracks';
+  const method= 'GET'
+  return apiCall(method, path)
+}
+
+const App = () => {
+  const [ quests, setQuests ] = useState(null);
+  const [ tracks, setTracks ] = useState(null);
+
+  useEffect(() => {
+    getAllQuests().then(res => setQuests(res)).catch(err => console.log(err))
+    getAllTracks().then(res => setTracks(res)).catch(err => console.log(err))
+  }, [])
+
+  return (
   <ThemeProvider theme={theme}>
     <RootContainer>
       <GlobalStyles />
-      <TabContainer />
+      {(!!tracks && !!quests) && <TabContainer quests={quests} tracks={tracks} />}
     </RootContainer>
   </ThemeProvider>
-);
+)};
 
 export default App;
