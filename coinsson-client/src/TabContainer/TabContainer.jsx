@@ -9,16 +9,16 @@ import {
   PointsContainer,
 } from './styles';
 import AchievementTracks from '../Achievements/AchievementTracks';
-import QuestList from '../Quests/QuestList.jsx';
+import QuestList from '../QuestCards/QuestList.jsx';
 import Admin from '../Admin/Admin';
 import apiCall from '../Ajax/ajax';
 
-const renderTab = (tabName) => {
+const renderTab = (tabName, quests, tracks) => {
   switch (tabName) {
     case 'Saavutukset':
       return <AchievementTracks />;
     case 'Tehtävät':
-      return <QuestList />;
+      return <QuestList quests={quests} tracks={tracks} />;
     case 'Admin':
       return <Admin />;
     default:
@@ -32,7 +32,7 @@ const fetchPoints = () => {
   return apiCall(method, path);
 }
 
-const TabContainer = () => {
+const TabContainer = ({ quests, tracks }) => {
   const [ activeTab, setActiveTab ] = useState('Admin');
   const [ points, setPoints ] = useState(null);
   useEffect(() => {
@@ -60,7 +60,7 @@ const TabContainer = () => {
           <h2>{points}</h2>
         </PointsContainer>
       </TabHeaders>
-      <TabContent>{renderTab(activeTab)}</TabContent>
+      <TabContent>{renderTab(activeTab, quests, tracks)}</TabContent>
     </TabWrapper>
   );
 }
