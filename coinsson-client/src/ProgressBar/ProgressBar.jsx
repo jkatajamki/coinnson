@@ -5,7 +5,7 @@ import { ProgressBarDiv } from './styles';
 const ProgressBar = ({ track, completeTrack }) => {
   return (
     <ProgressBarDiv>
-      <Quests id={track} completeTrack={track => completeTrack()} />
+      <Quests track={track} completeTrack={completeTrack} />
     </ProgressBarDiv>
   );
 };

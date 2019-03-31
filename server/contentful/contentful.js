@@ -52,4 +52,12 @@ export const getTrackQuests = (trackId) => contentfulEnv
       'content_type': 'quest',
       'fields.trackTitle.sys.id': trackId,
     }))
-  .then(mapFields);
+  .then((content) => {
+    console.log('content', content)
+    content.items.forEach(c => console.log('item.fields', c.fields.trackTitle))
+    const mapped = mapFields(content);
+    return mapped.map(item => ({
+      ...item,
+      trackTitle: item.trackTitle.sys.id,
+    }));
+  });

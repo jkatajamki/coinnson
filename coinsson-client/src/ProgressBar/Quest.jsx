@@ -6,6 +6,7 @@ import { icons } from './icon-mapping';
 
 const Quest = ({ data, changeStatus, completeTrack }) =>
   data.quests.map(item => {
+    console.log('item', item)
     if (item.order === data.quests.length) {
       return (
         <Icon
