@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import tabs from './tabs';
 import {
   TabHeaders,
@@ -6,11 +6,12 @@ import {
   TabContent,
   TabWrapper,
   Underline,
+  PointsContainer,
 } from './styles';
 import AchievementTracks from '../Achievements/AchievementTracks';
 import QuestList from '../Quests/QuestList.jsx';
 import Admin from '../Admin/Admin';
-import Points from './Points';
+import apiCall from '../Ajax/ajax';
 
 const renderTab = (tabName) => {
   switch (tabName) {
@@ -25,8 +26,18 @@ const renderTab = (tabName) => {
   }
 }
 
+const fetchPoints = () => {
+  const path = '/content/getPoints';
+  const method = 'GET';
+  return apiCall(method, path);
+}
+
 const TabContainer = () => {
   const [ activeTab, setActiveTab ] = useState('Admin');
+  const [ points, setPoints ] = useState(null);
+  useEffect(() => {
+    fetchPoints().then(res => setPoints(res.points))
+  }, []);
 
   return (
     <TabWrapper>
@@ -45,7 +56,9 @@ const TabContainer = () => {
             />
           </TabHeader>
         ))}
-        <Points />
+        <PointsContainer>
+          <h2>{points}</h2>
+        </PointsContainer>
       </TabHeaders>
       <TabContent>{renderTab(activeTab)}</TabContent>
     </TabWrapper>

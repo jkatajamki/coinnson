@@ -18,7 +18,11 @@ export const mapFields = (content) =>
 
 export const sumPoints = (items) => items.reduce((total, item) => total + item.points, 0);
 
-export const getPoints = () => getContentfulEntries('points').then(sumPoints);
+export const getPoints = () => getContentfulEntries('points')
+  .then((response) => {
+    const points = sumPoints(response);
+    return { points }
+  });
 
 export const resetPoints = () => contentfulEnv
   .then((cEnv) => {
