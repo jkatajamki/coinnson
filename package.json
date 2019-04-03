@@ -13,7 +13,7 @@
     "prettier": "cd coinsson-client && npm run prettier && cd ..",
     "postinstall": "npm run build",
     "test": "mocha ./server/**/*.test.js --require @babel/register",
-    "test-client": "cd coinsson-client && npm test",
+    "test-client": "cd coinsson-client && npm test"
   },
   "dependencies": {
     "contentful-management": "5.7.0",
