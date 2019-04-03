@@ -4,7 +4,7 @@
   "private": false,
   "scripts": {
     "build": "babel ./server -d ./lib",
-    "build-client": "cd coinsson-client && npm run build",
+    "build-client": "cd coinsson-client && npm i && npm run build",
     "client": "cd coinsson-client && HOST=127.0.0.1 npm start",
     "start": "nodemon lib/server.js",
     "lint": "eslint --ext js ./server",
@@ -13,7 +13,7 @@
     "prettier": "cd coinsson-client && npm run prettier && cd ..",
     "postinstall": "npm run build",
     "test": "mocha ./server/**/*.test.js --require @babel/register",
-    "test-client": "cd coinsson-client && npm test"
+    "test-client": "cd coinsson-client && npm test",
   },
   "dependencies": {
     "contentful-management": "5.7.0",
