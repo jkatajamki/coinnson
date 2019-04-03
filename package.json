@@ -4,6 +4,7 @@
   "private": false,
   "scripts": {
     "build": "babel ./server -d ./lib",
+    "build-client": "cd coinsson-client && npm run build",
     "client": "cd coinsson-client && HOST=127.0.0.1 npm start",
     "start": "nodemon lib/server.js",
     "lint": "eslint --ext js ./server",
