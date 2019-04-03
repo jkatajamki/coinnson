@@ -9,12 +9,11 @@ const onIconClick = (disabled, item, handleClick) => {
 };
 
 const Icon = (props) => {
-  const { item, complete, disabled, icon, handleClick } = props;
+  const { item, complete, disabled, icon } = props;
   const iconState = disabled && item.state !== 'USED' ? 'BLOCKED' : item.state;
   return (
     <StyledIcon
       state={iconState}
-      onClick={() => onIconClick(disabled, item, handleClick)}
       pose={complete ? 'COMPLETE' : iconState}
     >
       {icon}
