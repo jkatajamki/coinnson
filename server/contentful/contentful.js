@@ -16,6 +16,13 @@ export const mapFields = (content) =>
     }), { id: item.sys.id })
   );
 
+export const mapTrackTitleIdForQuest = (content) => {
+  return content.map(item => ({
+    ...item,
+    trackId: item.trackTitle.sys.id,
+  }));
+};
+
 export const sumPoints = (items) => items.reduce((total, item) => total + item.points, 0);
 
 export const getPoints = () => getContentfulEntries('points')
@@ -44,7 +51,8 @@ export const resetPoints = () => contentfulEnv
 
 export const getAllTracks = () => getContentfulEntries('track');
 
-export const getAllQuests = () => getContentfulEntries('quest');
+export const getAllQuests = () => getContentfulEntries('quest')
+  .then(mapTrackTitleIdForQuest);
 
 export const getTrackQuests = (trackId) => contentfulEnv
   .then((env) =>
@@ -53,11 +61,9 @@ export const getTrackQuests = (trackId) => contentfulEnv
       'fields.trackTitle.sys.id': trackId,
     }))
   .then((content) => {
-    console.log('content', content)
-    content.items.forEach(c => console.log('item.fields', c.fields.trackTitle))
     const mapped = mapFields(content);
     return mapped.map(item => ({
       ...item,
-      trackTitle: item.trackTitle.sys.id,
+      trackId: item.trackTitle.sys.id,
     }));
   });
