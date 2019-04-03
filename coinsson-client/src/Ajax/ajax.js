@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 const { REACT_APP_ENV } = process.env;
 
-const BASE_URL = REACT_APP_ENV === 'dev' ? 'http://localhost' : 'https://coinsson.herokuapp.com/';
+const BASE_URL = REACT_APP_ENV === 'dev' ? 'http://localhost' : 'https://coinsson.herokuapp.com';
 const API_PORT = REACT_APP_ENV === 'dev' ? ':5000' : '';
 const API_URL = `${BASE_URL}${API_PORT}/api`;
 
