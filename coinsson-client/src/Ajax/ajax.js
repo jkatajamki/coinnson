@@ -1,9 +1,12 @@
 import dotenv from 'dotenv';
 
 dotenv.config();
-const { REACT_APP_ENV } = process.env;
+const { REACT_APP_ENV } = process.env;
 
-const BASE_URL = REACT_APP_ENV === 'dev' ? 'http://localhost' : 'https://coinsson.herokuapp.com/';
+const BASE_URL =
+  REACT_APP_ENV === 'dev'
+    ? 'http://localhost'
+    : 'https://coinsson.herokuapp.com/';
 const API_PORT = REACT_APP_ENV === 'dev' ? ':5000' : '';
 const API_URL = `${BASE_URL}${API_PORT}/api`;
 
@@ -14,7 +17,7 @@ const getHeaders = () => {
   return headers;
 };
 
-const handleResponse = async (response) => {
+const handleResponse = async response => {
   const responseBody = response.status === 204 ? '' : await response.json();
 
   if (!response.ok) {
@@ -35,7 +38,7 @@ const apiCall = (method, path, data = {}) => {
   const url = `${API_URL}${path}`;
   return fetch(url, options)
     .then(handleResponse)
-    .catch((e) => {
+    .catch(e => {
       // TODO: handle fetch error
       console.error('Error in apiCall:', e);
       throw e;
