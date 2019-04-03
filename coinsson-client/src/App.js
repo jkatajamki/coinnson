@@ -4,7 +4,7 @@ import RootContainer from './Layout/RootContainer';
 import { theme } from './styles';
 import TabContainer from './TabContainer/TabContainer';
 import { createGlobalStyle } from 'styled-components';
-import apiCall from './Ajax/ajax';
+import apiCall, { getSocket, subscribeToNews } from './Ajax/ajax';
 
 const GlobalStyles = createGlobalStyle`
   body {
@@ -28,6 +28,10 @@ const getAllTracks = () => {
   const method = 'GET';
   return apiCall(method, path);
 };
+
+subscribeToNews((news) => {
+  console.log(news);
+});
 
 const App = () => {
   const [quests, setQuests] = useState(null);

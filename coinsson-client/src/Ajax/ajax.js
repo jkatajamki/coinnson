@@ -1,4 +1,5 @@
 import dotenv from 'dotenv';
+import openSocket from 'socket.io-client';
 
 dotenv.config();
 const { REACT_APP_ENV } = process.env;
@@ -9,6 +10,8 @@ const BASE_URL =
     : 'https://coinsson.herokuapp.com';
 const API_PORT = REACT_APP_ENV === 'dev' ? ':5000' : '';
 const API_URL = `${BASE_URL}${API_PORT}/api`;
+
+const socket = openSocket(`${BASE_URL}${API_PORT}`);
 
 const getHeaders = () => {
   const headers = new Headers();
@@ -44,5 +47,9 @@ const apiCall = (method, path, data = {}) => {
       throw e;
     });
 };
+
+export const subscribeToNews = (cb) => {
+  socket.on('news', (news) => cb(news))
+}
 
 export default apiCall;
