@@ -19,33 +19,39 @@ const GlobalStyles = createGlobalStyle`
 
 const getAllQuests = () => {
   const path = '/content/getAllQuests';
-  const method= 'GET'
-  return apiCall(method, path)
-}
-
+  const method = 'GET';
+  return apiCall(method, path);
+};
 
 const getAllTracks = () => {
   const path = '/content/getAllTracks';
-  const method= 'GET'
-  return apiCall(method, path)
-}
+  const method = 'GET';
+  return apiCall(method, path);
+};
 
 const App = () => {
-  const [ quests, setQuests ] = useState(null);
-  const [ tracks, setTracks ] = useState(null);
+  const [quests, setQuests] = useState(null);
+  const [tracks, setTracks] = useState(null);
 
   useEffect(() => {
-    getAllQuests().then(res => setQuests(res)).catch(err => console.log(err))
-    getAllTracks().then(res => setTracks(res)).catch(err => console.log(err))
-  }, [])
+    getAllQuests()
+      .then(res => setQuests(res))
+      .catch(err => console.log(err));
+    getAllTracks()
+      .then(res => setTracks(res))
+      .catch(err => console.log(err));
+  }, []);
 
   return (
-  <ThemeProvider theme={theme}>
-    <RootContainer>
-      <GlobalStyles />
-      {(!!tracks && !!quests) && <TabContainer quests={quests} tracks={tracks} />}
-    </RootContainer>
-  </ThemeProvider>
-)};
+    <ThemeProvider theme={theme}>
+      <RootContainer>
+        <GlobalStyles />
+        {!!tracks && !!quests && (
+          <TabContainer quests={quests} tracks={tracks} />
+        )}
+      </RootContainer>
+    </ThemeProvider>
+  );
+};
 
 export default App;

@@ -1,36 +1,87 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Quest from './Quest';
-import { Query, Mutation } from 'react-apollo';
-import { CHANGE_STATUS, GET_QUESTS } from './queries';
 import PlaneLoader from '../Loader/Loader';
+import apiCall from '../Ajax/ajax';
+import { Row } from './styles';
+import Icon from './Icon';
+import { icons } from './icon-mapping';
+import Transfer from './Transfer';
 
-const Quests = ({ id, completeTrack }) => (
-  <Query query={GET_QUESTS} variables={{ id }}>
-    {({ loading, error, data }) => {
-      if (loading) return <PlaneLoader />;
-      if (error) return `Error! ${error.message}`;
+const fetchQuests = (trackId) => {
+  const path = `/content/getTrackQuests?${trackId}`;
+  return apiCall('GET', path);
+}
+
+const updateQuest = () => {
+  console.log('updateQuest')
+}
+
+const Quests = ({ track, completeTrack }) => {
+  const [ quests, setQuests ] = useState(null);
+  useEffect(() => {
+    fetchQuests(track.id).then(setQuests)
+  }, []);
+
+  if (!quests) {
+    return (<PlaneLoader />)
+  }
+  console.log(quests)
+
+  return quests.map((item, key) => {
+    if (item.order === quests.length) {
       return (
-        <Mutation mutation={CHANGE_STATUS} key={id}>
-          {updateQuest => (
-            <Quest
-              data={data}
-              completeTrack={completeTrack}
-              changeStatus={item => {
-                updateQuest({
-                  variables: {
-                    id: item.id,
-                    state: item.state,
-                    done: item.done,
-                    points: item.points,
-                  },
-                });
-              }}
-            />
-          )}
-        </Mutation>
+        <Icon
+          disabled={item.state === 'BLOCKED'}
+          key={key}
+          icon={icons[item.track.header]}
+          complete={item.track.done}
+          item={item}
+          /*
+          handleClick={() => {
+            const currItem = {
+              id: item.id,
+              state: 'USED',
+              points: item.points,
+            };
+            completeTrack();
+            changeStatus(currItem);
+          }}
+          */
+        />
       );
-    }}
-  </Query>
-);
+    }
+    return (
+      <Row key={item.order}>
+        <Icon
+          disabled={item.state === 'BLOCKED'}
+          icon={icons[item.track.header]}
+          complete={item.track.done}
+          item={item}
+          /*
+          handleClick={() => {
+            const currItem = {
+              id: item.id,
+              state: 'USED',
+              done: true,
+              points: item.points,
+            };
+            const nextItem = data.quests.find(
+              quest => quest.order === item.order + 1
+            );
+            const nextAvailable = {
+              id: nextItem.id,
+              state: 'AVAILABLE',
+              done: false,
+            };
+            changeStatus(currItem);
+            changeStatus(nextAvailable);
+          }}
+          */
+        />
+        <Transfer state={item.state} disabled={item.state === 'BLOCKED'} />
+      </Row>
+    );
+  });
+};
 
 export default Quests;

@@ -20,23 +20,23 @@ const renderTab = (tabName, quests, tracks) => {
     case 'Tehtävät':
       return <QuestList quests={quests} tracks={tracks} />;
     case 'Admin':
-      return <Admin />;
+      return <Admin tracks={tracks} />;
     default:
       return <div className="placeholder" />;
   }
-}
+};
 
 const fetchPoints = () => {
   const path = '/content/getPoints';
   const method = 'GET';
   return apiCall(method, path);
-}
+};
 
 const TabContainer = ({ quests, tracks }) => {
-  const [ activeTab, setActiveTab ] = useState('Admin');
-  const [ points, setPoints ] = useState(null);
+  const [activeTab, setActiveTab] = useState('Admin');
+  const [points, setPoints] = useState(null);
   useEffect(() => {
-    fetchPoints().then(res => setPoints(res.points))
+    fetchPoints().then(res => setPoints(res.points));
   }, []);
 
   return (
@@ -63,5 +63,5 @@ const TabContainer = ({ quests, tracks }) => {
       <TabContent>{renderTab(activeTab, quests, tracks)}</TabContent>
     </TabWrapper>
   );
-}
+};
 export default TabContainer;
