@@ -2,6 +2,7 @@ import * as http from 'http';
 import parseurl from 'parseurl';
 import { getHandler } from './routing/routing';
 import dotenv from 'dotenv';
+import SocketIO from 'socket.io';
 
 dotenv.config();
 
@@ -25,9 +26,19 @@ function mangleCors(res) {
   return res;
 }
 
-http.createServer((req, res) => {
+function createServerHandler(req, res) {
   const requestUrl = parseurl(req);
   const handler = getHandler(requestUrl.pathname);
   handler(requestUrl, req, mangleCors(res));
-})
-  .listen(port, () => console.log(`Coinsson server listening on port ${port} ♪♫♫♪`));
+}
+
+const server = http.createServer(createServerHandler);
+const io = SocketIO(server);
+server.listen(port, () => console.log(`Coinsson server listening on port ${port} ♪♫♫♪`));
+
+io.on('connection', function (socket) {
+  socket.emit('news', { hello: 'world' });
+  socket.on('my other event', function (data) {
+    console.log(data);
+  });
+});
