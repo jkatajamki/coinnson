@@ -2,10 +2,14 @@ import React from 'react';
 import Quests from './Quests';
 import { ProgressBarDiv } from './styles';
 
-const ProgressBar = ({ track, completeTrack }) => {
+const ProgressBar = ({ track, quests, completeTrack }) => {
   return (
     <ProgressBarDiv>
-      <Quests track={track} completeTrack={completeTrack} />
+      <Quests
+        track={track}
+        quests={quests}
+        completeTrack={completeTrack}
+      />
     </ProgressBarDiv>
   );
 };

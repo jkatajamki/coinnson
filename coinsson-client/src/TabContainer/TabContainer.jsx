@@ -16,7 +16,7 @@ import apiCall from '../Ajax/ajax';
 const renderTab = (tabName, quests, tracks) => {
   switch (tabName) {
     case 'Saavutukset':
-      return <AchievementTracks />;
+      return <AchievementTracks tracks={tracks} quests={quests} />;
     case 'Tehtävät':
       return <QuestList quests={quests} tracks={tracks} />;
     case 'Admin':

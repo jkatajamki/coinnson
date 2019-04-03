@@ -1,37 +1,30 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import ProgressBar from '../ProgressBar/ProgressBar';
 import { Container } from './styles';
-import { Query, Mutation } from 'react-apollo';
-import { GET_TRACKS, COMPLETE_TRACK } from './queries';
-import PlaneLoader from '../Loader/Loader';
-import apiCall from '../Ajax/ajax';
-
-const fetchTracks = () => {
-  const path = '/content/getAllTracks'
-  return apiCall('GET', path);
-}
 
 const completeTrack = (data) => {
   console.log('data', data)
 }
 
-const Tracks = () => {
-  const [ tracks, setTracks ] = useState(null);
-  useEffect(() => {
-    fetchTracks().then(setTracks)
-  }, []);
-
-  if (!tracks) {
-    return (<PlaneLoader />)
-  }
+const Tracks = ({ tracks, quests }) => {
+  const getTrackQuests = (trackId) => quests
+    .filter(q => q.trackId === trackId)
+    .sort((a, b) => {
+      if (a.order < b.order)
+        return -1;
+      if (a.order > b.order)
+        return 1;
+      return 0;
+    });
 
   return (<Container>
     {tracks
       .filter(track => !track.hidden)
-      .map(track => (
-        <React.Fragment key={track.id}>
+      .map((track, key) => (
+        <React.Fragment key={key}>
           <ProgressBar
             track={track}
+            quests={getTrackQuests(track.id)}
             completeTrack={() =>
               completeTrack({ variables: { id: track.id, done: true } })
             }

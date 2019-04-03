@@ -1,40 +1,19 @@
-import React, { useState, useEffect } from 'react';
-import Quest from './Quest';
+import React from 'react';
 import PlaneLoader from '../Loader/Loader';
-import apiCall from '../Ajax/ajax';
 import { Row } from './styles';
 import Icon from './Icon';
 import { icons } from './icon-mapping';
 import Transfer from './Transfer';
 
-const fetchQuests = (trackId) => {
-  const path = `/content/getTrackQuests?${trackId}`;
-  return apiCall('GET', path);
-}
-
-const updateQuest = () => {
-  console.log('updateQuest')
-}
-
-const Quests = ({ track, completeTrack }) => {
-  const [ quests, setQuests ] = useState(null);
-  useEffect(() => {
-    fetchQuests(track.id).then(setQuests)
-  }, []);
-
-  if (!quests) {
-    return (<PlaneLoader />)
-  }
-  console.log(quests)
-
+const Quests = ({ track, quests }) => {
   return quests.map((item, key) => {
     if (item.order === quests.length) {
       return (
         <Icon
           disabled={item.state === 'BLOCKED'}
           key={key}
-          icon={icons[item.track.header]}
-          complete={item.track.done}
+          icon={icons[track.title]}
+          complete={track.done}
           item={item}
           /*
           handleClick={() => {
@@ -51,11 +30,11 @@ const Quests = ({ track, completeTrack }) => {
       );
     }
     return (
-      <Row key={item.order}>
+      <Row key={key}>
         <Icon
           disabled={item.state === 'BLOCKED'}
-          icon={icons[item.track.header]}
-          complete={item.track.done}
+          icon={icons[track.title]}
+          complete={track.done}
           item={item}
           /*
           handleClick={() => {

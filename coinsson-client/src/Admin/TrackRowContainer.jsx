@@ -12,8 +12,8 @@ const TrackRowContainer = ({ tracks }) => {
     <div>
       <h2>Do great things with tracks</h2>
       <TrackRowWrapper>
-        {tracks.map(track => (
-          <TrackRow handleClick={handleClick} track={track} key={track.id} />
+        {tracks.map((track, key) => (
+          <TrackRow handleClick={handleClick} track={track} key={key} />
         ))}
       </TrackRowWrapper>
     </div>

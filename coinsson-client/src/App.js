@@ -36,10 +36,10 @@ const App = () => {
   useEffect(() => {
     getAllQuests()
       .then(res => setQuests(res))
-      .catch(err => console.log(err));
+      .catch(err => console.error(err));
     getAllTracks()
       .then(res => setTracks(res))
-      .catch(err => console.log(err));
+      .catch(err => console.error(err));
   }, []);
 
   return (
