@@ -7,15 +7,16 @@ import { Cards } from './styles';
 // only show the next non-completed quest, ie.
 // from one track, show only the quest with smallest 'order' number, that isn't 'done'
 const getFilteredQuests = (quests, tracks) => quests
-  .filter(q => !q.hidden)
+  .filter(q => !q.hidden && !tracks.find(t => t.id === q.trackId).hidden)
   .reduce((acc, next) => {
     const trackForNextQuest = tracks.find(t => t.id === next.trackId);
-    const alreadyHasRepresentation = acc.find(q => q.trackId === trackForNextQuest.id && next.order < q.order);
+    const alreadyHasRepresentation = acc.find(q => q.trackId === trackForNextQuest.id && q.state === 'AVAILABLE');
     if (alreadyHasRepresentation) {
       return acc;
     }
     const previousRemoved = acc.filter(q => q.trackId !== trackForNextQuest.id)
-    return [...previousRemoved, next];
+    const newAcc = [...previousRemoved, next];
+    return newAcc;
   }, [])
 
 const Quests = ({ quests, tracks }) => {
@@ -30,7 +31,6 @@ const Quests = ({ quests, tracks }) => {
   }
 
   const filteredQuests = getFilteredQuests(quests, tracks);
-
   return (
     <div>
       <h2>Quests</h2>

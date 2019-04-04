@@ -12,7 +12,20 @@ const Admin = ({ tracks, updateTrack, quests, updateQuests }) => {
     return apiCall(method, path);
   };
 
-  const resetQuests = () => {};
+  const resetQuests = () => {
+    const reset = quests.map(q => {
+      const blank = {
+        ...q,
+        done: false,
+        hidden: false,
+        highlight: false,
+        state: 'BLOCKED',
+      };
+
+      return q.order === 1 ? { ...blank, state: 'AVAILABLE' } : blank;
+    });
+    updateQuests(reset);
+  };
 
   return (
     <AdminContainer>
