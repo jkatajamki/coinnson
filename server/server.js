@@ -8,10 +8,11 @@ import { getAllQuests, getAllTracks } from './contentful/contentful';
 dotenv.config();
 
 const port = process.env.PORT || 5000;
-const { CLIENT_ORIGIN } = process.env;
+const { CLIENT_ORIGIN_DEV } = process.env;
 
 function mangleCors(res) {
   res.setHeader('Access-Control-Allow-Origin', CLIENT_ORIGIN);
+  res.setHeader('Access-Control-Allow-Origin', CLIENT_ORIGIN_DEV);
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
   res.setHeader('Access-Control-Allow-Credentials', true);
   return res;
