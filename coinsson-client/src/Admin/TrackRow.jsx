@@ -6,12 +6,10 @@ const TrackRow = ({ handleClick, track }) => {
     <RowWrapper justifyContent="space-between">
       <p>{track.title}</p>
       <ButtonWrapper>
-        <Button onClick={() => handleClick(track.id, 'highlight')}>
+        <Button id="highlight-quest-btn" onClick={() => handleClick(track.id, 'highlight')}>
           Korosta
         </Button>
-        <Button
-          onClick={() => handleClick(track.id, track.hidden ? 'show' : 'hide')}
-        >
+        <Button id="hide-quest-btn" onClick={() => handleClick(track.id, track.hidden ? 'show' : 'hide')}>
           {track.hidden ? 'Näytä' : 'Piilota'}
         </Button>
       </ButtonWrapper>

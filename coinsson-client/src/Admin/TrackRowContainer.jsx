@@ -4,7 +4,9 @@ import TrackRow from './TrackRow';
 import PlaneLoader from '../Loader/Loader';
 
 const TrackRowContainer = ({ tracks }) => {
-  const handleClick = () => {
+  const handleClick = (trackId, action) => {
+    console.log('trackId', trackId)
+    console.log('action', action)
     //Tässä tehdään trackin muutokset
   };
 

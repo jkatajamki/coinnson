@@ -46,6 +46,12 @@ const App = () => {
       .catch(err => console.error(err));
   }, []);
 
+  /*
+  subscribeToQuests((quests) => {
+    setQuests(quests);
+  })
+  */
+
   return (
     <ThemeProvider theme={theme}>
       <RootContainer>

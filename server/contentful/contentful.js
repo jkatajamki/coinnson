@@ -67,3 +67,32 @@ export const getTrackQuests = (trackId) => contentfulEnv
       trackId: item.trackTitle.sys.id,
     }));
   });
+
+  export const updateQuest = (quest) => contentfulEnv
+    .then((env) => env.getEntry(quest.id))
+    .then((entry) => {
+      entry.fields.done['en-US'] = quest.done;
+      entry.fields.state['en-US'] = quest.state;
+      entry.fields.hidden['en-US'] = quest.hidden;
+      entry.fields.highlight['en-US'] = quest.highlight;
+      return entry.update();
+    })
+    .then((data) => {
+      const mapped = mapFields({ items: [data] })[0];
+      return {
+        ...mapped,
+        trackId: mapped.trackTitle.sys.id,
+      };
+    });
+
+  export const updateTrack = (track) => contentfulEnv
+    .then(env => env.getEntry(track.id))
+    .then((entry) => {
+      entry.fields.done['en-US'] = track.done;
+      entry.fields.hidden['en-US'] = track.done;
+      return entry.update()
+    })
+    .then((data) => {
+      const track = mapFields({ items: [data] })[0];
+      return { track };
+    });

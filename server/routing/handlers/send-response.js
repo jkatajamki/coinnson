@@ -2,7 +2,7 @@ export const sendSuccess = (res, content) => {
   res.status = 200;
   const body = JSON.stringify(content);
   res.end(body);
-}
+};
 
 export const sendServerError = (res, err) => {
   res.status = 500;
@@ -11,4 +11,10 @@ export const sendServerError = (res, err) => {
   console.error('Error:', err)
   const body = JSON.stringify(err);
   res.end(body);
-}
+};
+
+export const sendNotFound = (res) => {
+  res.status = 404;
+  const body = 'Not found';
+  res.end(body);
+};
