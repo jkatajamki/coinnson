@@ -4,7 +4,7 @@ import RootContainer from './Layout/RootContainer';
 import { theme } from './styles';
 import TabContainer from './TabContainer/TabContainer';
 import { createGlobalStyle } from 'styled-components';
-import apiCall, { getSocket, subscribeToTracks } from './Ajax/ajax';
+import apiCall, { subscribeToTracks, subscribeToQuests } from './Ajax/ajax';
 
 const GlobalStyles = createGlobalStyle`
   body {
@@ -37,6 +37,13 @@ const postTrack = (track) => {
   }, 'update track');
 }
 
+const postQuests = (quests) => {
+  const path = '/content/updateQuests';
+  const method = 'POST';
+  return apiCall(method, path, {
+    quests
+  }, 'update quests');
+}
 
 const App = () => {
   const [quests, setQuests] = useState(null);
@@ -55,8 +62,16 @@ const App = () => {
     await postTrack(track);
   };
 
+  const updateQuests = async (quests) => {
+    await postQuests(quests);
+  }
+
   subscribeToTracks((tracks) => {
     setTracks(tracks);
+  });
+
+  subscribeToQuests((quests) => {
+    setQuests(quests);
   });
 
   return (
@@ -68,6 +83,7 @@ const App = () => {
             quests={quests}
             tracks={tracks}
             updateTrack={updateTrack}
+            updateQuests={updateQuests}
           />
         )}
       </RootContainer>

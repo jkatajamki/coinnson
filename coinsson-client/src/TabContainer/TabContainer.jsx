@@ -19,7 +19,7 @@ const fetchPoints = () => {
   return apiCall(method, path);
 };
 
-const TabContainer = ({ quests, tracks, updateTrack }) => {
+const TabContainer = ({ quests, tracks, updateTrack, updateQuests }) => {
   const [activeTab, setActiveTab] = useState('Admin');
   const [points, setPoints] = useState(null);
 
@@ -34,7 +34,7 @@ const TabContainer = ({ quests, tracks, updateTrack }) => {
       case 'Tehtävät':
         return <QuestList quests={quests} tracks={tracks} />;
       case 'Admin':
-        return <Admin tracks={tracks} updateTrack={updateTrack} />;
+        return <Admin tracks={tracks} updateTrack={updateTrack} quests={quests} updateQuests={updateQuests} />;
       default:
         return <div className="placeholder" />;
     }

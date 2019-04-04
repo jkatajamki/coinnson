@@ -47,4 +47,10 @@ io.on('connection', function (socket) {
       socket.emit('tracks', tracks);
     });
   });
+
+  socket.on('update quests', () => {
+    getAllQuests().then((quests) => {
+      socket.emit('quests', quests);
+    });
+  })
 });

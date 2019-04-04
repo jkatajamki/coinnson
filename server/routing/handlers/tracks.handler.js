@@ -31,7 +31,7 @@ export const getTrackQuestsHandler = (url, _, res) => {
     .catch(err => sendServerError(res, err));
 };
 
-export const updateQuestHandler = (_, req, res) => {
+export const updateQuestsHandler = (_, req, res) => {
   if (req.method !== 'POST') {
     sendNotFound(res);
     return;
@@ -43,8 +43,8 @@ export const updateQuestHandler = (_, req, res) => {
         return;
       }
 
-      const data = JSON.parse(body)
-      return updateQuest(data.quest)
+      const data = JSON.parse(body);
+      return Promise.all(data.quests.map(quest => updateQuest(quest)));
     })
     .then((data) => sendSuccess(res, data))
     .catch(err => sendServerError(res, err));

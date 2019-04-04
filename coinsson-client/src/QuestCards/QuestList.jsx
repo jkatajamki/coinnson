@@ -3,6 +3,21 @@ import QuestCard from './QuestCard';
 import PlaneLoader from '../Loader/Loader';
 import { Cards } from './styles';
 
+// filter quests
+// only show the next non-completed quest, ie.
+// from one track, show only the quest with smallest 'order' number, that isn't 'done'
+const getFilteredQuests = (quests, tracks) => quests
+  .filter(q => !q.hidden)
+  .reduce((acc, next) => {
+    const trackForNextQuest = tracks.find(t => t.id === next.trackId);
+    const alreadyHasRepresentation = acc.find(q => q.trackId === trackForNextQuest.id && next.order < q.order);
+    if (alreadyHasRepresentation) {
+      return acc;
+    }
+    const previousRemoved = acc.filter(q => q.trackId !== trackForNextQuest.id)
+    return [...previousRemoved, next];
+  }, [])
+
 const Quests = ({ quests, tracks }) => {
 
   const getTrack = (trackId) => {
@@ -14,15 +29,13 @@ const Quests = ({ quests, tracks }) => {
     return (<PlaneLoader />)
   }
 
+  const filteredQuests = getFilteredQuests(quests, tracks);
+
   return (
     <div>
       <h2>Quests</h2>
       <Cards>
-        {quests
-          .filter(quest => !quest.hidden)
-          .map(quest => {
-            return <QuestCard key={quest.id} quest={quest} trackTitle={getTrack(quest.trackTitle.sys.id)} />;
-          })}
+        {filteredQuests.map(quest => <QuestCard key={quest.id} quest={quest} trackTitle={getTrack(quest.trackTitle.sys.id)} />)}
       </Cards>
     </div>
 )};

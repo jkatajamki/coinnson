@@ -56,4 +56,8 @@ export const subscribeToTracks = (cb) => {
   socket.on('tracks', tracks => cb(tracks));
 };
 
+export const subscribeToQuests = (cb) => {
+  socket.on('quests', quests => cb(quests));
+};
+
 export default apiCall;
