@@ -34,12 +34,14 @@ io.on('connection', function (socket) {
   socket.on('update track', () => {
     getAllTracks().then((tracks) => {
       socket.broadcast.emit('tracks', tracks);
+      socket.emit('tracks', tracks);
     });
   });
 
   socket.on('update quests', () => {
     getAllQuests().then((quests) => {
       socket.broadcast.emit('quests', quests);
+      socket.emit('quests', quests);
     });
   })
 });
