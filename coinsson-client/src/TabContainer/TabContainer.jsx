@@ -17,7 +17,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const getIsAdmin = () => {
-  return process.env.REACT_APP_ENV === 'dev';
+  return process.env.REACT_APP_OLENHAN_ADMIN;
 };
 
 const fetchPoints = () => {
