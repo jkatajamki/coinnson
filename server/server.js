@@ -33,13 +33,13 @@ io.on('connection', function (socket) {
 
   socket.on('update track', () => {
     getAllTracks().then((tracks) => {
-      socket.emit('tracks', tracks);
+      socket.broadcast.emit('tracks', tracks);
     });
   });
 
   socket.on('update quests', () => {
     getAllQuests().then((quests) => {
-      socket.emit('quests', quests);
+      socket.broadcast.emit('quests', quests);
     });
   })
 });
