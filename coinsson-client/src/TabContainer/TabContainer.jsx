@@ -39,7 +39,7 @@ const TabContainer = ({ quests, tracks, updateTrack, updateQuests }) => {
   const renderTab = (tabName, quests, tracks) => {
     switch (tabName) {
       case 'Saavutukset':
-        return <AchievementTracks tracks={tracks} quests={quests} />;
+        return <AchievementTracks tracks={tracks} quests={quests} completeQuest={updateQuests} />;
       case 'Tehtävät':
         return <QuestList quests={quests} tracks={tracks} />;
       case 'Admin':

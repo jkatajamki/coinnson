@@ -66,6 +66,7 @@ const App = () => {
     await postQuests(quests);
   }
 
+
   subscribeToTracks((tracks) => {
     setTracks(tracks);
   });
@@ -84,6 +85,7 @@ const App = () => {
             tracks={tracks}
             updateTrack={updateTrack}
             updateQuests={updateQuests}
+            completeQuest={updateQuests}
           />
         )}
       </RootContainer>

@@ -2,11 +2,7 @@ import React from 'react';
 import ProgressBar from '../ProgressBar/ProgressBar';
 import { Container } from './styles';
 
-const completeTrack = (data) => {
-  console.log('data', data)
-}
-
-const Tracks = ({ tracks, quests }) => {
+const Tracks = ({ tracks, quests, completeQuest }) => {
   const getTrackQuests = (trackId) => quests
     .filter(q => q.trackId === trackId)
     .sort((a, b) => {
@@ -25,9 +21,7 @@ const Tracks = ({ tracks, quests }) => {
           <ProgressBar
             track={track}
             quests={getTrackQuests(track.id)}
-            completeTrack={() =>
-              completeTrack({ variables: { id: track.id, done: true } })
-            }
+            completeQuest={completeQuest}
             disabled={false}
           />
         </React.Fragment>

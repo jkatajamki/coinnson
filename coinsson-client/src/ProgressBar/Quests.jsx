@@ -1,11 +1,44 @@
 import React from 'react';
-import PlaneLoader from '../Loader/Loader';
 import { Row } from './styles';
 import Icon from './Icon';
 import { icons } from './icon-mapping';
 import Transfer from './Transfer';
 
-const Quests = ({ track, quests }) => {
+import dotenv from 'dotenv';
+
+dotenv.config();
+
+const getIsAdmin = () => {
+  return process.env.REACT_APP_OLENHAN_ADMIN;
+};
+
+const Quests = ({ track, quests, completeQuest }) => {
+
+  const handleClick = (quest, lastItem = false) => {
+    // no click action for the non-admin kind ;)
+    if (!getIsAdmin()) {
+      return;
+    }
+
+    const currentQuest = {
+      ...quest,
+      done: true,
+      state: 'USED'
+    }
+
+    if (lastItem) {
+      completeQuest([currentQuest]);
+      return;
+    }
+
+    const nextQuest = {
+      ...quests.find(q => q.trackId === quest.trackId && (q.order - 1) === quest.order),
+      done: false,
+      state: 'AVAILABLE'
+    };
+    completeQuest([currentQuest, nextQuest]);
+  };
+
   return quests.map((item, key) => {
     if (item.order === quests.length) {
       return (
@@ -15,17 +48,7 @@ const Quests = ({ track, quests }) => {
           icon={icons[track.title]}
           complete={track.done}
           item={item}
-          /*
-          handleClick={() => {
-            const currItem = {
-              id: item.id,
-              state: 'USED',
-              points: item.points,
-            };
-            completeTrack();
-            changeStatus(currItem);
-          }}
-          */
+          handleClick={() => handleClick(item, true)}
         />
       );
     }
@@ -36,26 +59,7 @@ const Quests = ({ track, quests }) => {
           icon={icons[track.title]}
           complete={track.done}
           item={item}
-          /*
-          handleClick={() => {
-            const currItem = {
-              id: item.id,
-              state: 'USED',
-              done: true,
-              points: item.points,
-            };
-            const nextItem = data.quests.find(
-              quest => quest.order === item.order + 1
-            );
-            const nextAvailable = {
-              id: nextItem.id,
-              state: 'AVAILABLE',
-              done: false,
-            };
-            changeStatus(currItem);
-            changeStatus(nextAvailable);
-          }}
-          */
+          handleClick={() => handleClick(item)}
         />
         <Transfer state={item.state} disabled={item.state === 'BLOCKED'} />
       </Row>
