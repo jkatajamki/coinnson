@@ -12,6 +12,13 @@ import AchievementTracks from '../Achievements/AchievementTracks';
 import QuestList from '../QuestCards/QuestList.jsx';
 import Admin from '../Admin/Admin';
 import apiCall from '../Ajax/ajax';
+import dotenv from 'dotenv';
+
+dotenv.config();
+
+const getIsAdmin = () => {
+  return process.env.REACT_APP_ENV === 'dev';
+};
 
 const fetchPoints = () => {
   const path = '/content/getPoints';
@@ -20,7 +27,9 @@ const fetchPoints = () => {
 };
 
 const TabContainer = ({ quests, tracks, updateTrack, updateQuests }) => {
-  const [activeTab, setActiveTab] = useState('Admin');
+  const isAdmin = getIsAdmin();
+
+  const [activeTab, setActiveTab] = useState('Saavutukset');
   const [points, setPoints] = useState(null);
 
   useEffect(() => {
@@ -34,16 +43,21 @@ const TabContainer = ({ quests, tracks, updateTrack, updateQuests }) => {
       case 'Tehtävät':
         return <QuestList quests={quests} tracks={tracks} />;
       case 'Admin':
+        if (!isAdmin) {
+          return null;
+        }
         return <Admin tracks={tracks} updateTrack={updateTrack} quests={quests} updateQuests={updateQuests} />;
       default:
         return <div className="placeholder" />;
     }
   };
 
+  const filteredTabs = isAdmin ? tabs : tabs.filter(t => t.tab !== 'Admin');
+
   return (
     <TabWrapper>
       <TabHeaders>
-        {tabs.map(tab => (
+        {filteredTabs.map(tab => (
           <TabHeader
             active={activeTab === tab.tab}
             key={tab.key}
