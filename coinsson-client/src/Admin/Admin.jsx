@@ -5,7 +5,7 @@ import TrackRowContainer from './TrackRowContainer';
 import ResetPoints from './ResetPoints';
 import apiCall from '../Ajax/ajax';
 
-const Admin = ({ tracks }) => {
+const Admin = ({ tracks, updateTrack }) => {
   const resetPoints = () => {
     const path = '/content/resetPoints';
     const method = 'GET';
@@ -21,7 +21,7 @@ const Admin = ({ tracks }) => {
         <ResetQuests resetQuests={resetQuests} />
         <ResetPoints resetPoints={resetPoints} />
       </ResetContainer>
-      <TrackRowContainer tracks={tracks} />
+      <TrackRowContainer tracks={tracks} updateTrack={updateTrack} />
     </AdminContainer>
   );
 };

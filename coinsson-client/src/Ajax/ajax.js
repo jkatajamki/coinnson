@@ -36,11 +36,15 @@ const getFetchOptions = (method, data) => ({
   body: method === 'POST' ? JSON.stringify(data) : null,
 });
 
-const apiCall = (method, path, data = {}) => {
+const apiCall = (method, path, data = {}, socketMessage = 'unknown') => {
   const options = getFetchOptions(method, data);
+  const socketArgs = []
   const url = `${API_URL}${path}`;
   return fetch(url, options)
-    .then(handleResponse)
+    .then((response) => {
+      socket.emit(socketMessage, socketArgs);
+      return handleResponse(response);
+    })
     .catch(e => {
       // TODO: handle fetch error
       console.error('Error in apiCall:', e);
@@ -48,8 +52,8 @@ const apiCall = (method, path, data = {}) => {
     });
 };
 
-export const subscribeToNews = (cb) => {
-  socket.on('news', (news) => cb(news))
-}
+export const subscribeToTracks = (cb) => {
+  socket.on('tracks', tracks => cb(tracks));
+};
 
 export default apiCall;

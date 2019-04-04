@@ -3,10 +3,21 @@ import { TrackRowWrapper } from './styles';
 import TrackRow from './TrackRow';
 import PlaneLoader from '../Loader/Loader';
 
-const TrackRowContainer = ({ tracks }) => {
+const TrackRowContainer = ({ tracks, updateTrack }) => {
+
   const handleClick = (trackId, action) => {
-    console.log('trackId', trackId)
-    console.log('action', action)
+    const track = tracks.find(t => t.id === trackId);
+
+    if (action === 'toggleVisibility') {
+      updateTrack({
+        ...track,
+        hidden: !track.hidden,
+      });
+    }
+    if (action === 'toggleHighlight') {
+      //updateTrackQuests()
+    }
+
     //Tässä tehdään trackin muutokset
   };
 

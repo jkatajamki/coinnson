@@ -3,6 +3,7 @@ import parseurl from 'parseurl';
 import { getHandler } from './routing/routing';
 import dotenv from 'dotenv';
 import SocketIO from 'socket.io';
+import { getAllQuests, getAllTracks } from './contentful/contentful';
 
 dotenv.config();
 
@@ -37,8 +38,13 @@ const io = SocketIO(server);
 server.listen(port, () => console.log(`Coinsson server listening on port ${port} ♪♫♫♪`));
 
 io.on('connection', function (socket) {
-  socket.emit('news', { hello: 'world' });
-  socket.on('my other event', function (data) {
-    console.log(data);
+  socket.on('unknown', (data) => {
+    console.info('unknown event', data);
+  });
+
+  socket.on('update track', () => {
+    getAllTracks().then((tracks) => {
+      socket.emit('tracks', tracks);
+    });
   });
 });

@@ -13,31 +13,32 @@ import QuestList from '../QuestCards/QuestList.jsx';
 import Admin from '../Admin/Admin';
 import apiCall from '../Ajax/ajax';
 
-const renderTab = (tabName, quests, tracks) => {
-  switch (tabName) {
-    case 'Saavutukset':
-      return <AchievementTracks tracks={tracks} quests={quests} />;
-    case 'Tehtävät':
-      return <QuestList quests={quests} tracks={tracks} />;
-    case 'Admin':
-      return <Admin tracks={tracks} />;
-    default:
-      return <div className="placeholder" />;
-  }
-};
-
 const fetchPoints = () => {
   const path = '/content/getPoints';
   const method = 'GET';
   return apiCall(method, path);
 };
 
-const TabContainer = ({ quests, tracks }) => {
+const TabContainer = ({ quests, tracks, updateTrack }) => {
   const [activeTab, setActiveTab] = useState('Admin');
   const [points, setPoints] = useState(null);
+
   useEffect(() => {
     fetchPoints().then(res => setPoints(res.points));
   }, []);
+
+  const renderTab = (tabName, quests, tracks) => {
+    switch (tabName) {
+      case 'Saavutukset':
+        return <AchievementTracks tracks={tracks} quests={quests} />;
+      case 'Tehtävät':
+        return <QuestList quests={quests} tracks={tracks} />;
+      case 'Admin':
+        return <Admin tracks={tracks} updateTrack={updateTrack} />;
+      default:
+        return <div className="placeholder" />;
+    }
+  };
 
   return (
     <TabWrapper>

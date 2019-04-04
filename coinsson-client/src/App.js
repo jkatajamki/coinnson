@@ -4,7 +4,7 @@ import RootContainer from './Layout/RootContainer';
 import { theme } from './styles';
 import TabContainer from './TabContainer/TabContainer';
 import { createGlobalStyle } from 'styled-components';
-import apiCall, { getSocket, subscribeToNews } from './Ajax/ajax';
+import apiCall, { getSocket, subscribeToTracks } from './Ajax/ajax';
 
 const GlobalStyles = createGlobalStyle`
   body {
@@ -29,9 +29,14 @@ const getAllTracks = () => {
   return apiCall(method, path);
 };
 
-subscribeToNews((news) => {
-  console.log(news);
-});
+const postTrack = (track) => {
+  const path = '/content/updateTrack';
+  const method = 'POST';
+  return apiCall(method, path, {
+    track
+  }, 'update track');
+}
+
 
 const App = () => {
   const [quests, setQuests] = useState(null);
@@ -46,18 +51,24 @@ const App = () => {
       .catch(err => console.error(err));
   }, []);
 
-  /*
-  subscribeToQuests((quests) => {
-    setQuests(quests);
-  })
-  */
+  const updateTrack = async (track) => {
+    await postTrack(track);
+  };
+
+  subscribeToTracks((tracks) => {
+    setTracks(tracks);
+  });
 
   return (
     <ThemeProvider theme={theme}>
       <RootContainer>
         <GlobalStyles />
         {!!tracks && !!quests && (
-          <TabContainer quests={quests} tracks={tracks} />
+          <TabContainer
+            quests={quests}
+            tracks={tracks}
+            updateTrack={updateTrack}
+          />
         )}
       </RootContainer>
     </ThemeProvider>
