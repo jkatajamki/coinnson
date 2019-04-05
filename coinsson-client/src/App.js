@@ -4,7 +4,7 @@ import RootContainer from './Layout/RootContainer';
 import { theme } from './styles';
 import TabContainer from './TabContainer/TabContainer';
 import { createGlobalStyle } from 'styled-components';
-import apiCall, { subscribeToTracks, subscribeToQuests } from './Ajax/ajax';
+import apiCall, { subscribeToTracks, subscribeToQuests, subscribeToAchievements } from './Ajax/ajax';
 
 const GlobalStyles = createGlobalStyle`
   body {
@@ -17,6 +17,9 @@ const GlobalStyles = createGlobalStyle`
   }
 `;
 
+/* TODO:
+  put these in another file
+*/
 const getAllQuests = () => {
   const path = '/content/getAllQuests';
   const method = 'GET';
@@ -28,6 +31,12 @@ const getAllTracks = () => {
   const method = 'GET';
   return apiCall(method, path);
 };
+
+const getAllAchievements = () => {
+  const path = '/content/getAllAchievements';
+  const method = 'GET';
+  return apiCall(method, path);
+}
 
 const postTrack = (track) => {
   const path = '/content/updateTrack';
@@ -45,9 +54,18 @@ const postQuests = (quests) => {
   }, 'update quests');
 }
 
+const postAchievements = (achievements) => {
+  const path = '/content/updateAchievements';
+  const method = 'POST';
+  return apiCall(method, path, {
+    achievements
+  }, 'update achievements');
+}
+
 const App = () => {
   const [quests, setQuests] = useState(null);
   const [tracks, setTracks] = useState(null);
+  const [achievements, setAchievements] = useState(null);
 
   useEffect(() => {
     getAllQuests()
@@ -56,6 +74,9 @@ const App = () => {
     getAllTracks()
       .then(res => setTracks(res))
       .catch(err => console.error(err));
+    getAllAchievements()
+      .then(res => setAchievements(res))
+      .catch(console.error);
   }, []);
 
   const updateTrack = async (track) => {
@@ -66,6 +87,9 @@ const App = () => {
     await postQuests(quests);
   }
 
+  const updateAchievements = async (achievements) => {
+    await postAchievements(achievements);
+  }
 
   subscribeToTracks((tracks) => {
     setTracks(tracks);
@@ -73,6 +97,10 @@ const App = () => {
 
   subscribeToQuests((quests) => {
     setQuests(quests);
+  });
+
+  subscribeToAchievements((achievements) => {
+    setAchievements(achievements);
   });
 
   return (
@@ -83,8 +111,10 @@ const App = () => {
           <TabContainer
             quests={quests}
             tracks={tracks}
+            achievements={achievements}
             updateTrack={updateTrack}
             updateQuests={updateQuests}
+            updateAchievements={updateAchievements}
           />
         )}
       </RootContainer>

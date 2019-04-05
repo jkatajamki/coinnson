@@ -52,3 +52,9 @@ export const ResetContainer = styled.div`
   flex-direction: row;
   justify-content: space-evenly;
 `;
+
+export const AchievementRowWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  min-width: 30em;
+`

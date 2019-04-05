@@ -4,8 +4,9 @@ import ResetQuests from './ResetQuests';
 import TrackRowContainer from './TrackRowContainer';
 import ResetPoints from './ResetPoints';
 import apiCall from '../Ajax/ajax';
+import AchievementsContainer from './AchievementsContainer';
 
-const Admin = ({ tracks, updateTrack, quests, updateQuests }) => {
+const Admin = ({ tracks, updateTrack, quests, updateQuests, achievements, updateAchievements }) => {
   const resetPoints = () => {
     const path = '/content/resetPoints';
     const method = 'GET';
@@ -40,6 +41,11 @@ const Admin = ({ tracks, updateTrack, quests, updateQuests }) => {
         quests={quests}
         updateQuests={updateQuests}
       />
+      <AchievementsContainer
+        achievements={achievements}
+        updateAchievements={updateAchievements}
+      />
+
     </AdminContainer>
   );
 };

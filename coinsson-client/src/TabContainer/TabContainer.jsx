@@ -26,7 +26,7 @@ const fetchPoints = () => {
   return apiCall(method, path);
 };
 
-const TabContainer = ({ quests, tracks, updateTrack, updateQuests }) => {
+const TabContainer = ({ quests, tracks, achievements, updateTrack, updateQuests, updateAchievements }) => {
   const isAdmin = getIsAdmin();
 
   const [activeTab, setActiveTab] = useState('Saavutukset');
@@ -46,7 +46,14 @@ const TabContainer = ({ quests, tracks, updateTrack, updateQuests }) => {
         if (!isAdmin) {
           return null;
         }
-        return <Admin tracks={tracks} updateTrack={updateTrack} quests={quests} updateQuests={updateQuests} />;
+        return <Admin
+          tracks={tracks}
+          updateTrack={updateTrack}
+          quests={quests}
+          updateQuests={updateQuests}
+          achievements={achievements}
+          updateAchievements={updateAchievements}
+        />;
       default:
         return <div className="placeholder" />;
     }

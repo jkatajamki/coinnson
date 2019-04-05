@@ -60,4 +60,8 @@ export const subscribeToQuests = (cb) => {
   socket.on('quests', quests => cb(quests));
 };
 
+export const subscribeToAchievements = (cb) => {
+  socket.on('achievements', achievements => cb(achievements));
+};
+
 export default apiCall;
