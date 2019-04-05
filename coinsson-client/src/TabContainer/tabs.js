@@ -11,6 +11,10 @@ const tabs = [
     tab: 'Admin',
     key: 3,
   },
+  {
+    tab: 'Suoritukset',
+    key: 4,
+  }
 ];
 
 export default tabs;

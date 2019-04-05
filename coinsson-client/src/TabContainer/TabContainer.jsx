@@ -13,6 +13,7 @@ import QuestList from '../QuestCards/QuestList.jsx';
 import Admin from '../Admin/Admin';
 import apiCall from '../Ajax/ajax';
 import dotenv from 'dotenv';
+import Achievements from '../Achievements/Achievements';
 
 dotenv.config();
 
@@ -42,6 +43,8 @@ const TabContainer = ({ quests, tracks, achievements, updateTrack, updateQuests,
         return <AchievementTracks tracks={tracks} quests={quests} completeQuest={updateQuests} />;
       case 'Tehtävät':
         return <QuestList quests={quests} tracks={tracks} />;
+      case 'Suoritukset':
+        return <Achievements achievements={achievements} />
       case 'Admin':
         if (!isAdmin) {
           return null;

@@ -65,7 +65,8 @@ const postAchievements = (achievements) => {
 const App = () => {
   const [quests, setQuests] = useState(null);
   const [tracks, setTracks] = useState(null);
-  const [achievements, setAchievements] = useState(null);
+  const [achievements, setAchievements] = useState([]);
+  const [newAchievements, setNewAchievements] = useState([]);
 
   useEffect(() => {
     getAllQuests()
@@ -99,8 +100,13 @@ const App = () => {
     setQuests(quests);
   });
 
-  subscribeToAchievements((achievements) => {
-    setAchievements(achievements);
+  subscribeToAchievements((updatedAchievements) => {
+    const newlyCompletedAchievements = updatedAchievements.filter(a =>
+      a.done && achievements.find(ca =>
+         ca.id === a.id && !ca.done)
+    );
+    setAchievements(updatedAchievements);
+    setNewAchievements(newlyCompletedAchievements);
   });
 
   return (
