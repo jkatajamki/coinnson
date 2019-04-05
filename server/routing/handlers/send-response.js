@@ -1,4 +1,5 @@
 export const sendSuccess = (res, content) => {
+  console.log('content', content)
   res.status = 200;
   const body = JSON.stringify(content);
   res.end(body);

@@ -4,7 +4,8 @@ import {
   getTrackQuests,
   getAllTracks,
   updateQuest,
-  updateTrack
+  updateTrack,
+  getAllAchievements
 } from '../../contentful/contentful';
 import { sendSuccess, sendServerError, sendNotFound } from './send-response';
 import { parseBody } from './parse-body';
@@ -22,6 +23,11 @@ export const getAllQuestsHandler = (_, __, res) =>
 export const getAllTracksHandler = (_, __, res) =>
   getAllTracks()
     .then(tracks => sendSuccess(res, tracks))
+    .catch(err => sendServerError(res, err));
+
+export const getAllAchievementsHandler = (_, __, res) =>
+  getAllAchievements()
+    .then(achievements => sendSuccess(res, achievements))
     .catch(err => sendServerError(res, err));
 
 export const getTrackQuestsHandler = (url, _, res) => {
@@ -68,3 +74,4 @@ export const updateTrackHandler = (_, req, res) => {
     .then((data) => sendSuccess(res, data))
     .catch(err => sendServerError(res, err));
 };
+

@@ -54,6 +54,8 @@ export const getAllTracks = () => getContentfulEntries('track');
 export const getAllQuests = () => getContentfulEntries('quest')
   .then(mapTrackTitleIdForQuest);
 
+export const getAllAchievements = () => getContentfulEntries('achievement');
+
 export const getTrackQuests = (trackId) => contentfulEnv
   .then((env) =>
     env.getEntries({
