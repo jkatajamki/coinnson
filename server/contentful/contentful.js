@@ -100,3 +100,14 @@ export const updateTrack = (track) => contentfulEnv
     const track = mapFields({ items: [data] })[0];
     return { track };
   });
+
+export const updateAchievement = (achievement) => contentfulEnv
+  .then(env => env.getEntry(achievement.id))
+  .then((entry) => {
+    entry.fields.done['en-US'] = achievement.done;
+    return entry.update();
+  })
+  .then((data) => {
+    const updated = mapFields({ items: [data] })[0];
+    return { achievement: updated };
+  });

@@ -5,10 +5,15 @@ import {
   getAllTracks,
   updateQuest,
   updateTrack,
-  getAllAchievements
+  getAllAchievements,
+  updateAchievement
 } from '../../contentful/contentful';
 import { sendSuccess, sendServerError, sendNotFound } from './send-response';
 import { parseBody } from './parse-body';
+
+/* TODO:
+  put some of these in different places
+*/
 
 export const getTracksHandler = (_, __, res) =>
   getTracks()
@@ -36,6 +41,11 @@ export const getTrackQuestsHandler = (url, _, res) => {
     .then(quests => sendSuccess(res, quests))
     .catch(err => sendServerError(res, err));
 };
+
+/*
+  TODO:
+  deal with duplicate code
+*/
 
 export const updateQuestsHandler = (_, req, res) => {
   if (req.method !== 'POST') {
@@ -75,3 +85,21 @@ export const updateTrackHandler = (_, req, res) => {
     .catch(err => sendServerError(res, err));
 };
 
+export const updateAchievementsHandler = (_, req, res) => {
+  if (req.method !== 'POST') {
+    sendNotFound(res);
+    return;
+  }
+  parseBody(req)
+    .then((body) => {
+      if (!body) {
+        sendServerError(res, 'No request body');
+        return;
+      }
+
+      const data = JSON.parse(body);
+      return Promise.all(data.achievements.map(achievement => updateAchievement(achievement)));
+    })
+    .then((data) => sendSuccess(res, data))
+    .catch(err => sendServerError(res, err));
+}

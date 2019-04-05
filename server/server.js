@@ -3,7 +3,7 @@ import parseurl from 'parseurl';
 import { getHandler } from './routing/routing';
 import dotenv from 'dotenv';
 import SocketIO from 'socket.io';
-import { getAllQuests, getAllTracks } from './contentful/contentful';
+import { getAllQuests, getAllTracks, getAllAchievements } from './contentful/contentful';
 
 dotenv.config();
 
@@ -43,5 +43,12 @@ io.on('connection', function (socket) {
       socket.broadcast.emit('quests', quests);
       socket.emit('quests', quests);
     });
-  })
+  });
+
+  socket.on('update achievements', () => {
+    getAllAchievements().then((achievs) => {
+      socket.broadcast.emit('achievements', achievs);
+      socket.emit('achievements', achievs);
+    });
+  });
 });

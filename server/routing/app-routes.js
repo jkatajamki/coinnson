@@ -6,7 +6,8 @@ import {
   getAllQuestsHandler,
   updateQuestsHandler,
   updateTrackHandler,
-  getAllAchievementsHandler
+  getAllAchievementsHandler,
+  updateAchievementsHandler
 } from './handlers/tracks.handler';
 
 const appRoutes = [
@@ -19,6 +20,7 @@ const appRoutes = [
   { path: '/api/content/getTrackQuests', handler: getTrackQuestsHandler },
   { path: '/api/content/updateQuests', handler: updateQuestsHandler },
   { path: '/api/content/updateTrack', handler: updateTrackHandler },
+  { path: '/api/content/updateAchievements', handler: updateAchievementsHandler },
 ];
 
 export default appRoutes;
